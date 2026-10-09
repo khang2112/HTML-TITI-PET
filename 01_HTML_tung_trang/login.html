@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Màn hình Đăng nhập — thiết kế giao diện TiTi Pet Management">
+  <title>TiTi Pet — Đăng nhập</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="login" data-prefix="">
+  <!-- HTML CỦA TRANG: Đăng nhập. Markup đã render đầy đủ để xem và dựng Figma. -->
+  <div id="root">
+<div class="login"><section class="login-side"><div><div style="font-size:24px;font-weight:850">🐾 TiTi Pet <span style="font-size:11px;font-weight:500;letter-spacing:2px">SHOP &amp; SPA</span></div><div class="bigpets">🐶 🐱</div><h1>Chăm sóc thú cưng.<br>Quản lý dễ dàng.</h1><p>Hệ thống vận hành Spa &amp; bán lẻ tại quầy, kết nối lễ tân, thợ Spa và quản lý trên cùng một hành trình.</p></div><div style="font-size:12px;opacity:.75">♡ Quản lý thú cưng &nbsp;&nbsp; ◈ Lịch Spa &nbsp;&nbsp; ▣ Bán phụ kiện &nbsp;&nbsp; ◷ Đối soát ca</div></section><section class="login-box"><div style="font-size:13px;color:#4878b2;font-weight:800;margin-bottom:19px">WELCOME BACK · TITIPET</div><h2>Đăng nhập</h2><p>Chọn vai trò để trải nghiệm đầy đủ các màn hình và nhánh xử lý theo báo cáo nghiệp vụ.</p><form id="loginForm"><div class="field"><label>Tên đăng nhập *</label><input class="inp" name="username" placeholder="nhanvien@titipet.vn" value="kieulinh@titipet.vn" required=""></div><div class="field"><label>Mật khẩu *</label><input class="inp" name="password" type="password" value="123456" placeholder="Nhập mật khẩu" required=""></div><div class="field"><label>Vai trò mô phỏng</label><select class="select" name="role"><option value="cashier">Lễ tân / Thu ngân</option><option value="spa">Thợ Spa</option><option value="manager">Quản lý cửa hàng</option></select></div><button type="submit" class="btn wide">ĐĂNG NHẬP VÀO HỆ THỐNG →</button></form><p style="text-align:center;margin:26px 0 9px;font-size:12px">HOẶC TRẢI NGHIỆM NHANH THEO VAI TRÒ</p><div class="login-roles"><button data-action="quicklogin" data-role="cashier">🧾<br>Lễ tân</button><button data-action="quicklogin" data-role="spa">✂<br>Thợ Spa</button><button data-action="quicklogin" data-role="manager">📈<br>Quản lý</button></div><div class="note" style="margin-top:30px">🔒 Đây là bản mô phỏng giao diện để dựng Figma. Đăng nhập và phân quyền chỉ được mô phỏng phía trình duyệt, không phải cơ chế bảo mật thực tế.</div></section></div>
+  </div>
+  <div id="modal"></div>
+  <div class="toast-stack" id="toasts"></div>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

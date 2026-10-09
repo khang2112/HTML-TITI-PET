@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Màn hình Đặt lịch Spa — thiết kế giao diện TiTi Pet Management">
+  <title>TiTi Pet — Đặt lịch Spa</title>
+  <style>
+
+:root{--blue:#245fb5;--deep:#153b76;--blue2:#397ce7;--ink:#202d47;--muted:#8190a9;--line:#e8edf5;--bg:#f5f8fd;--white:#fff;--teal:#14ad98;--green:#14966e;--orange:#f3a33a;--red:#e76370;--shadow:0 8px 32px rgba(26,56,110,.055);--radius:17px;--side:248px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:disabled{opacity:.43;cursor:not-allowed}.hidden{display:none!important}
+.app{display:flex;min-height:100vh}.sidebar{width:var(--side);position:fixed;left:0;top:0;bottom:0;background:linear-gradient(180deg,#1e529e,#123567);color:#d8e8ff;display:flex;flex-direction:column;z-index:20;box-shadow:4px 0 22px #183e7612}.brand{padding:29px 22px 23px;display:flex;align-items:center;gap:11px;border-bottom:1px solid #ffffff18}.brandlogo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#ffffffea;color:#235caa;font-size:23px;box-shadow:0 8px 20px #031c3959}.brandname{color:white;font-size:21px;letter-spacing:-.5px;font-weight:850;line-height:1}.brandsub{font-size:10px;letter-spacing:1.9px;margin-top:7px;opacity:.72}.menu{padding:16px 12px;overflow:auto;flex:1}.menu-label{font-weight:750;font-size:10px;letter-spacing:1.5px;color:#aac6ec;margin:19px 12px 9px;text-transform:uppercase}.nav{width:100%;display:flex;align-items:center;gap:11px;padding:11px 13px;border:0;background:transparent;color:#d8e8ff;text-align:left;border-radius:10px;font-weight:580;margin-bottom:3px}.nav:hover{background:#ffffff12;color:white}.nav.active{background:#ffffff22;color:white;box-shadow:inset 3px 0 0 #85d7ff}.nav .nav-ico{font-size:17px;min-width:22px;text-align:center}.nav .num{margin-left:auto;color:#fff;font-size:10px;background:#ffffff32;border-radius:10px;padding:2px 6px}.side-bottom{padding:14px 18px 20px;border-top:1px solid #ffffff21;font-size:11px;color:#acc5e8}.side-user{display:flex;gap:10px;align-items:center;margin:4px 0 12px}.side-avatar{width:34px;height:34px;border-radius:11px;background:#73b3f3;color:#153b76;display:grid;place-items:center;font-size:16px;font-weight:bold}.main{margin-left:var(--side);width:calc(100% - var(--side));min-width:0}.topbar{position:sticky;top:0;z-index:15;height:75px;display:flex;justify-content:space-between;align-items:center;padding:0 34px;background:#fff;border-bottom:1px solid var(--line);gap:18px}.breadcrumb{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:13px;color:#8ca0b9}.breadcrumb b{color:var(--deep)}.top-search{display:flex;align-items:center;background:#f4f7fc;max-width:390px;flex:1;padding:11px 14px;gap:10px;border:1px solid #ebf0f6;border-radius:11px;color:var(--muted)}.top-search input{outline:0;background:none;border:0;width:100%;color:var(--ink)}.userarea{display:flex;gap:14px;align-items:center;white-space:nowrap}.circle{width:36px;height:36px;border-radius:12px;background:#f0f5fd;border:1px solid #e2eaf4;display:grid;place-items:center;color:var(--blue)}.userpill{display:flex;gap:9px;align-items:center;cursor:pointer}.userpill .meta{line-height:1.3}.userpill small{display:block;color:var(--muted);font-size:11px}.content{padding:31px 35px 60px;max-width:1600px;margin:auto}.heading{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;gap:16px;flex-wrap:wrap}.eyebrow{font-weight:750;letter-spacing:1.25px;font-size:11px;color:var(--blue);text-transform:uppercase;margin-bottom:9px}.heading h1{font-size:28px;line-height:1.2;letter-spacing:-.85px;color:#173969;margin:0 0 8px;font-weight:850}.subtitle{font-size:13px;color:#8492a7;line-height:1.6;margin:0}.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.btn{padding:11px 17px;border:1px solid transparent;border-radius:11px;background:var(--blue);color:white;font-weight:700;box-shadow:0 5px 11px #285cb521;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}.btn:hover{filter:brightness(.96)}.btn.soft{background:#e8f0ff;color:var(--blue);border-color:#d9e8ff;box-shadow:none}.btn.ghost{background:white;color:#506587;border-color:#dae4f1;box-shadow:none}.btn.danger{background:#fff0f2;color:#c74559;border-color:#ffd6df;box-shadow:none}.btn.green{background:#15a38d}.btn.sm{padding:7px 11px;font-size:12px;border-radius:8px}.btn.xs{padding:5px 8px;font-size:11px;border-radius:7px}.btn.wide{width:100%}.card{background:#fff;border:1px solid #e8edf6;border-radius:var(--radius);box-shadow:var(--shadow)}.pad{padding:22px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:19px;flex-wrap:wrap}.card-head h3{margin:0;font-size:16px;color:#264569;letter-spacing:-.2px}.card-head small{color:#8798ae;font-size:12px}.grid{display:grid;gap:18px}.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.split{display:grid;grid-template-columns:1.55fr 1fr;gap:18px}.split-equal{display:grid;grid-template-columns:1fr 1fr;gap:18px}.row{display:flex;align-items:center;gap:12px}.between{justify-content:space-between}.align-top{align-items:flex-start}.muted{color:#8391a7}.muted-sm{font-size:12px;color:#91a0b5}.mini{font-size:11px}.strong{font-weight:800}.money{font-variant-numeric:tabular-nums;letter-spacing:-.25px}.metric{padding:22px;position:relative;overflow:hidden}.metric .m-icon{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;font-size:21px;margin-bottom:17px}.metric b{font-size:29px;letter-spacing:-1px;color:#183e6f}.metric .label{color:#8b99ac;font-weight:550;font-size:12px;margin:7px 0}.metric .trend{font-size:11px;color:#168a76;font-weight:650}.metric .m-bg{position:absolute;right:-13px;bottom:-19px;font-size:95px;opacity:.045}.tone-blue{background:#ebf2ff;color:#2865be}.tone-teal{background:#e6faf5;color:#10997f}.tone-orange{background:#fff2df;color:#cb822b}.tone-violet{background:#f1ebff;color:#8061c8}.tone-red{background:#ffedf0;color:#d35c6b}.badge{font-size:11px;font-weight:750;padding:5px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.badge.blue{background:#eaf1ff;color:#326bc4}.badge.green{background:#e4f8ef;color:#14825c}.badge.yellow{background:#fff1d9;color:#b87821}.badge.red{background:#ffedf0;color:#cb4e63}.badge.gray{background:#eff3f8;color:#71839c}.badge.purple{background:#f2edff;color:#7959b8}.tablewrap{overflow:auto;border-radius:11px}.data-table{border-collapse:collapse;width:100%;font-size:12.5px}.data-table th{padding:12px 13px;text-align:left;color:#8b9bb0;background:#f8fafd;font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.55px;white-space:nowrap}.data-table td{padding:13px;border-bottom:1px solid #eef2f7;color:#53637b;vertical-align:middle}.data-table tr:last-child td{border-bottom:0}.data-table tbody tr:hover{background:#f9fbff}.data-table td b{color:#2c4666}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field>label{font-weight:730;color:#546986;font-size:12px}.field .hint{color:#92a0b2;font-size:11px}.inp,.select,.textarea{border:1px solid #dce5f1;border-radius:10px;background:#fff;min-height:42px;padding:10px 12px;color:#334b68;width:100%;outline:0;transition:border .18s,box-shadow .18s}.inp:focus,.select:focus,.textarea:focus{border-color:#75a4ea;box-shadow:0 0 0 3px #397ce711}.inp:disabled{background:#f5f7fa}.textarea{resize:vertical;min-height:80px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.formgrid.triple{grid-template-columns:repeat(3,minmax(0,1fr))}.formgrid .full{grid-column:1/-1}.divider{height:1px;background:#edf1f7;margin:18px 0}.note{padding:12px 14px;border-radius:11px;background:#eef5ff;color:#4671a8;font-size:12px;line-height:1.65;border:1px solid #dcecff}.note.warn{background:#fff7eb;border-color:#ffead0;color:#987132}.note.error{background:#fff0f1;border-color:#ffd8de;color:#be5162}.note.good{background:#e8f9f4;border-color:#d0eee5;color:#247c66}.listline{display:flex;align-items:center;gap:13px;border-bottom:1px solid #eef3f9;padding:12px 0}.listline:last-child{border-bottom:0}.peticon{display:grid;place-items:center;width:43px;height:43px;flex:0 0 43px;background:#eaf4ff;border-radius:12px;font-size:25px}.peticon.cat{background:#fff0e8}.colorbar{height:8px;background:#f0f3f8;border-radius:10px;overflow:hidden}.colorbar span{display:block;background:#3878df;height:100%;border-radius:10px}.progress{display:flex;gap:5px}.progress span{flex:1;height:6px;background:#e8eef5;border-radius:10px}.progress span.on{background:#2b7cdf}.pill-tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{background:#f4f7fb;border:1px solid #e5ebf3;color:#697e9d;border-radius:9px;font-weight:710;font-size:12px;padding:9px 13px}.tab.sel{background:#e7f0ff;border-color:#b9d4ff;color:#2d65b4}.workboard{display:grid;grid-template-columns:repeat(4,minmax(235px,1fr));gap:14px;overflow:auto}.lane{background:#f6f8fc;border:1px solid #e8edf4;border-radius:14px;min-height:255px;padding:12px}.lane h4{font-size:12px;margin:5px 2px 15px;color:#4c6180;display:flex;justify-content:space-between}.job{padding:15px;background:#fff;border:1px solid #e7ebf3;border-radius:12px;margin-bottom:10px;box-shadow:0 4px 13px #12356708}.job h4{margin:9px 0 5px;color:#1d416f}.job p{margin:5px 0;color:#8290a5;font-size:12px}.job .btn{margin-top:13px;width:100%}.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.product{padding:15px;border:1px solid #e7edf5;border-radius:13px;background:#fff;text-align:left;transition:.15s}.product:hover{border-color:#7ba9ee;box-shadow:0 8px 15px #397ce714;transform:translateY(-2px)}.product .prod-emoji{font-size:28px;width:53px;height:53px;display:grid;place-items:center;border-radius:12px;background:#f0f6ff;margin-bottom:13px}.product strong{font-size:12px;color:#2d486d;display:block;min-height:32px}.product .price{margin-top:11px;color:#2a67be;font-weight:820}.product small{color:#9aa9bb}.basket-item{border-bottom:1px solid #edf1f6;padding:12px 0}.basket-item:last-child{border:0}.qty{display:flex;align-items:center;gap:7px}.qty button{width:25px;height:25px;border:1px solid #dbe5f2;background:white;color:#325c93;border-radius:7px}.receipt-line{display:flex;align-items:center;justify-content:space-between;padding:7px 0;color:#718096;font-size:12px;gap:12px}.receipt-line b{color:#2c4666}.receipt-line.total{font-size:19px;font-weight:850;color:#1a497b;border-top:1px dashed #ccd7e4;margin-top:12px;padding-top:17px}.receipt-line.total b{color:#1f66ba}.timeline{display:flex;align-items:stretch;gap:11px;margin-bottom:11px}.time-col{font-size:12px;color:#8393a9;min-width:49px;padding-top:16px}.timeline-content{padding:13px 16px;background:#f7faff;border:1px solid #e8effa;border-left:3px solid #75a6e5;border-radius:10px;flex:1}.timeline-content h4{margin:0 0 7px;color:#31537f}.timeline-content p{margin:0;color:#8a9bb1;font-size:12px}.avatar{width:39px;height:39px;border-radius:13px;background:#dfeafb;display:grid;place-items:center;color:#2f69af;font-weight:850}.bar-chart{height:180px;display:flex;align-items:end;justify-content:space-between;gap:10px;padding:16px 8px 0;border-bottom:1px solid #e8edf5}.bar-chart .bar-col{display:flex;flex-direction:column;align-items:center;justify-content:end;gap:8px;height:100%;flex:1}.bar-chart .bar{background:linear-gradient(0deg,#3b82df,#91b8f5);width:62%;max-width:34px;border-radius:7px 7px 0 0;min-height:2px}.bar-chart label{font-size:11px;color:#9cabc0;white-space:nowrap}.empty{border:1px dashed #d6e1ef;padding:36px;text-align:center;color:#8ca0b8;background:#f9fbff;border-radius:13px}.empty .em{font-size:33px;margin-bottom:9px}.hero{background:linear-gradient(115deg,#1f58a9,#3c8fe3);padding:27px 29px;border-radius:17px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px;overflow:hidden;position:relative}.hero h2{font-size:23px;letter-spacing:-.6px;margin:5px 0 9px}.hero p{opacity:.81;font-size:13px;margin:0;max-width:510px;line-height:1.7}.hero .hero-art{font-size:85px;filter:drop-shadow(0 12px 14px #0a387044);transform:rotate(-8deg);flex:none}.hero .btn{background:white;color:#1c5aa5;margin-top:16px}.searchrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.searchrow .inp{flex:1;min-width:180px}.chip{display:inline-flex;align-items:center;gap:6px;background:#f2f6fc;border:1px solid #e7edf4;color:#607b9f;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:700}.choice{border:1px solid #dfebf7;padding:13px;border-radius:11px;background:white;display:flex;align-items:center;gap:10px;cursor:pointer}.choice:has(input:checked){border-color:#4d8cde;background:#f0f6ff}.choice input{accent-color:#3174d1}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:#37b996}.steps{display:flex;gap:8px;flex-wrap:wrap}.step{font-size:12px;padding:10px 14px;background:#f4f7fb;border-radius:9px;color:#8c9bb0;font-weight:750}.step.on{background:#e2f0ff;color:#2973bd}.modal-bg{position:fixed;inset:0;background:#142b48aa;z-index:99;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}.modal{background:white;border-radius:19px;box-shadow:0 25px 85px #091d385c;width:min(650px,95vw);max-height:90vh;overflow:auto}.modal-head{padding:23px 27px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.modal-body{padding:22px 27px 28px}.modal-head h2{font-size:19px;color:#234673;margin:0}.modal-x{width:31px;height:31px;display:grid;place-items:center;border:1px solid #e1e7f0;border-radius:9px;background:#f5f7fb}.toast-stack{pointer-events:none;position:fixed;z-index:130;bottom:22px;right:22px;display:grid;gap:9px;max-width:375px}.toast{padding:13px 16px;border-radius:11px;background:#153b76;color:#fff;box-shadow:0 8px 30px #182d484a;font-size:13px;line-height:1.55}.toast.bad{background:#bb4658}.toast.ok{background:#19816c}.login{min-height:100vh;display:grid;grid-template-columns:1.04fr 1fr;background:#fff}.login-side{background:linear-gradient(145deg,#76c4fa,#286fb9);padding:50px clamp(30px,7vw,105px);display:flex;flex-direction:column;justify-content:space-between;color:white;position:relative;overflow:hidden}.login-side:before{content:"";position:absolute;bottom:-200px;right:-160px;width:650px;height:650px;border-radius:50%;border:100px solid #ffffff20}.login-side .bigpets{font-size:155px;line-height:1;margin:40px 0;filter:drop-shadow(0 19px 10px #205c9c25);position:relative;z-index:1}.login-side h1{font-size:46px;letter-spacing:-1.5px;line-height:1.1;margin:0 0 19px}.login-side p{font-size:16px;opacity:.9;line-height:1.8}.login-box{width:min(450px,82%);margin:auto}.login-box h2{font-size:33px;color:#1c467b;margin:0 0 10px}.login-box p{color:#8b9eb7;line-height:1.65}.login-box .field{margin-top:20px}.login-box .btn{margin-top:24px;min-height:46px}.login-roles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:19px 0 0}.login-roles button{border:1px solid #dfebf6;background:#f6f9fd;border-radius:10px;padding:10px 5px;color:#45688f;font-size:11px;font-weight:700}.login-roles button:hover{background:#e6f0ff}.flow-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.flow-card{padding:17px;border:1px solid #e7edf5;border-radius:13px;background:#fff}.flow-card h4{margin:0 0 9px;color:#285385}.flow-card p{margin:0;font-size:12px;line-height:1.7;color:#75869c}.flow-card .idx{display:inline-grid;place-items:center;width:25px;height:25px;background:#e6f0ff;color:#2465b0;border-radius:7px;font-size:11px;font-weight:850;margin-right:7px}.kbd{background:#eaf0f7;border-radius:5px;padding:3px 6px;font-size:11px;color:#56708f}.setup-table{width:100%;border-collapse:collapse;font-size:12px}.setup-table td{border-bottom:1px solid #edf1f5;padding:10px;color:#72829b}.setup-table td:first-child{font-weight:750;color:#2f4b6b}.footer-note{font-size:11px;color:#a0afc2;text-align:center;margin-top:35px}.nav-toggle{display:none}.inline-warning{font-size:12px;color:#b46836;margin:10px 0}.vbar{width:3px;height:16px;background:#2c78d1;display:inline-block;border-radius:3px;margin-right:8px;vertical-align:middle}
+@media(max-width:1200px){:root{--side:215px}.content{padding:25px}.topbar{padding:0 25px}.product-grid{grid-template-columns:repeat(2,1fr)}.cols-4,.cols-5{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
+@media(max-width:800px){.sidebar{transform:translateX(-100%);transition:transform .25s}.sidebar.show{transform:translateX(0)}.main{margin:0;width:100%}.nav-toggle{display:inline-flex}.topbar{padding:0 16px}.topbar .top-search{max-width:230px}.userpill .meta{display:none}.content{padding:18px}.cols-3,.cols-2,.split-equal,.flow-grid{grid-template-columns:1fr}.heading h1{font-size:23px}.formgrid.triple{grid-template-columns:1fr 1fr}.login{grid-template-columns:1fr}.login-side{display:none}.login-box{padding:55px 0}.workboard{grid-template-columns:repeat(4,235px)}}
+@media(max-width:550px){.formgrid,.formgrid.triple,.cols-4,.cols-5{grid-template-columns:1fr}.topbar .top-search{display:none}.heading{margin-bottom:18px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .hero-art{display:none}}
+@media print{.sidebar,.topbar,.actions,.btn,.footer-note{display:none!important}.main{margin:0;width:100%}.content{padding:5px}.card{box-shadow:none}}
+
+
+/* TiTi Pet multi-page UX source additions */
+.nav[href]{text-decoration:none}
+.nav[href]:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+#root{min-height:100vh}
+
+/* Fast add customer/pet from appointment, POS and walk-in forms */
+.quick-field-head{gap:8px;align-items:center!important;margin-bottom:7px;flex-wrap:wrap}
+.quick-field-head label{margin:0!important}
+.quick-field-head .quick-add{white-space:nowrap;color:#245fb5;font-weight:700;border-color:#bfd5f4;background:#edf5ff;padding:6px 10px}
+.quick-field-head .quick-add:hover{background:#dcecff;border-color:#8cb7f3}
+
+</style>
+</head>
+<body data-page="appointments" data-prefix="">
+  <!-- HTML CỦA TRANG: Đặt lịch Spa. Markup đã render đầy đủ để xem và dựng Figma. -->
+  <div id="root">
+<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><div class="brandlogo">🐾</div><div><div class="brandname">TiTi Pet</div><div class="brandsub">MANAGEMENT SYSTEM</div></div></div><nav class="menu"><div class="menu-label">TỔNG QUAN</div><button class="nav " data-go="dashboard"><span class="nav-ico">▦</span><span>Trang chủ</span></button><button class="nav " data-go="shift"><span class="nav-ico">◷</span><span>Mở / chốt ca</span></button><div class="menu-label">VẬN HÀNH</div><button class="nav active" data-go="appointments"><span class="nav-ico">▦</span><span>Đặt lịch hẹn Spa</span><span class="num">2</span></button><button class="nav " data-go="reception"><span class="nav-ico">🐾</span><span>Tiếp nhận thú cưng</span></button><button class="nav " data-go="spa"><span class="nav-ico">✂</span><span>Điều phối Spa</span></button><button class="nav " data-go="pos"><span class="nav-ico">▣</span><span>Bán hàng POS</span></button><button class="nav " data-go="returns"><span class="nav-ico">⇄</span><span>Đổi trả hàng</span></button><button class="nav " data-go="invoices"><span class="nav-ico">▤</span><span>Hóa đơn / giao dịch</span></button><div class="menu-label">KHÁCH HÀNG &amp; KHO</div><button class="nav " data-go="customers"><span class="nav-ico">♙</span><span>Khách hàng &amp; VIP</span></button><button class="nav " data-go="pets"><span class="nav-ico">♡</span><span>Hồ sơ thú cưng</span></button><button class="nav " data-go="inventory"><span class="nav-ico">▤</span><span>Kho &amp; nhập hàng</span></button><button class="nav " data-go="catalog"><span class="nav-ico">◈</span><span>Dịch vụ / sản phẩm</span></button><button class="nav " data-go="promos"><span class="nav-ico">%</span><span>Khuyến mãi</span></button><div class="menu-label">QUẢN TRỊ &amp; BÀN GIAO</div><button class="nav " data-go="reports"><span class="nav-ico">▥</span><span>Báo cáo thống kê</span></button><button class="nav " data-go="flow"><span class="nav-ico">⬡</span><span>Luồng nghiệp vụ / Figma</span></button></nav><div class="side-bottom"><div class="side-user"><span class="side-avatar">★</span><div><b style="color:white;font-size:12px">Quản lý TiTi Pet</b><div style="opacity:.75;margin-top:3px">Quản lý cửa hàng</div></div></div><div class="row between"><span>TiTi Pet Management</span><b>v2.6 UI</b></div><button class="nav" data-action="logout" style="margin-top:7px;padding:8px 0">↪ Đăng xuất / Đổi vai trò</button></div></aside><div class="main"><header class="topbar"><div class="row" style="min-width:0"><button class="btn soft sm nav-toggle" data-action="menu">☰</button><div class="breadcrumb">Quản lý cửa hàng <span>›</span> <b>Đặt lịch hẹn Spa</b></div></div><div class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Tìm khách hàng, thú cưng, hóa đơn..." aria-label="Tìm kiếm toàn hệ thống"><span class="kbd">↵</span></div><div class="userarea"><span class="circle" title="Dữ liệu mô phỏng">🔔</span><div class="userpill" data-action="logout" title="Chọn tài khoản khác"><div class="circle" style="background:#e4efff">👤</div><span class="meta"><b style="color:#264a78;font-size:12px">Quản lý TiTi Pet</b><small>Quản lý</small></span><span class="muted">⌄</span></div></div></header><main class="content"><div class="heading"><div><div class="eyebrow">TI TI PET • WORKSPACE</div><h1>Đặt lịch hẹn Spa</h1><p class="subtitle">Kiểm tra khung giờ, phân công thợ và tiếp nhận đặt lịch đa kênh</p></div><div class="actions"><span class="chip">📅 9/10/2026</span><span class="badge yellow">● Chưa mở ca</span><button class="btn ghost sm" data-go="flow">ⓘ Luồng chức năng</button></div></div><section id="view"><div class="split"><div class="card pad"><div class="card-head"><div><h3>▦ Phiếu tiếp nhận lịch hẹn Spa</h3><small>Ghi từ quầy, điện thoại, Fanpage hoặc TikTok</small></div></div><form id="apptForm" class="formgrid"><div class="field"><div class="row between quick-field-head"><label style="margin:0">Số điện thoại / Khách hàng *</label><button type="button" class="btn soft xs quick-add" data-action="newCustomer" data-quick="customer">＋ Thêm khách mới</button></div><select class="select" name="customer" id="apptCustomer" required=""><option value="">-- Chọn --</option><option value="KH001" selected="">Hồng Nhiên · 0332353566</option><option value="KH002">Lê Tuấn Anh · 0912345678</option><option value="KH003">Nguyễn Gia Hân · 0909988776</option></select></div><div class="field"><div class="row between quick-field-head"><label>Thú cưng *</label><button type="button" class="btn soft xs quick-add" data-action="newPet" data-quick="pet" title="Tạo hồ sơ thú cưng ngay tại đây">＋ Thêm thú cưng</button></div><select class="select" name="pet" id="apptPet" required=""><option value="">-- Chọn --</option><option value="PET001" selected="">Miu Miu (Mèo · Hồng Nhiên)</option><option value="PET002">Bobby (Chó · Lê Tuấn Anh)</option><option value="PET003">Coco (Chó · Nguyễn Gia Hân)</option></select></div><div class="field"><label>Dịch vụ dự kiến *</label><select class="select" name="service" required=""><option value="">-- Chọn --</option><option value="SV001" selected="">Tắm sấy vệ sinh · 180.000 ₫</option><option value="SV002">Spa toàn diện · 230.000 ₫</option><option value="SV003">Cắt tỉa tạo kiểu · 210.000 ₫</option><option value="SV004">Cạo lông · 160.000 ₫</option><option value="SV005">Chải xơ rối · 120.000 ₫</option></select></div><div class="field"><label>Thợ Spa phụ trách *</label><select class="select" name="staff" required=""><option value="">-- Chọn --</option><option value="SPA001" selected="">Nguyễn Văn Tú</option><option value="SPA002">Lê Thị Hoa</option><option value="SPA003">Trần Minh Anh</option></select></div><div class="field"><label>Ngày hẹn *</label><input class="inp" type="date" name="date" min="2026-10-09" value="2026-10-09" required=""></div><div class="field"><label>Khung giờ hẹn *</label><select name="time" class="select"><option>08:00</option><option>09:00</option><option>10:00</option><option>10:30</option><option selected="">11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></div><div class="field"><label>Nguồn đặt lịch</label><select class="select" name="channel"><option>Trực tiếp</option><option>Điện thoại</option><option>Fanpage</option><option>TikTok</option></select></div><div class="field"><label>Giờ trả pet dự kiến</label><input class="inp" value="Tự tính theo thời lượng" disabled=""></div><div class="field full"><label>Ghi chú đặc biệt từ khách</label><textarea class="textarea" name="note" placeholder="Ví dụ: Bé hơi nhát nước, cần thao tác nhẹ nhàng..." rows="2"></textarea></div><div class="field full"><div class="note">✓ Hệ thống kiểm tra trùng lịch theo <b>thợ + khoảng thời gian phục vụ</b>. Đặt lịch online vẫn phải kiểm tra thực tế thú cưng tại quầy, chưa phát sinh hóa đơn.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Xác nhận và lưu lịch hẹn Spa</button></div></form></div><div class="card pad"><div class="card-head"><div><h3>Lịch làm việc của thợ</h3><small>2 ca hẹn ngày đã chọn</small></div><input class="inp" style="width:153px" type="date" value="2026-10-09" id="filterApptDate"></div><div class="listline align-top"><span class="peticon ">🐶</span><div style="flex:1;min-width:0"><div class="row between" style="gap:5px"><b>09:00 · Bobby</b><span class="badge yellow">Chờ tiếp nhận</span></div><p class="muted-sm" style="margin:7px 0">Spa toàn diện • Lê Tuấn Anh<br>Thợ Nguyễn Văn Tú · Điện thoại</p><div class="row" style="flex-wrap:wrap"><button class="btn soft xs" data-action="checkin" data-id="LH001">Tiếp nhận →</button><button class="btn ghost xs" data-action="editAppt" data-id="LH001">Dời lịch</button><button class="btn danger xs" data-action="cancelAppt" data-id="LH001">Hủy</button></div></div></div><div class="listline align-top"><span class="peticon cat">🐱</span><div style="flex:1;min-width:0"><div class="row between" style="gap:5px"><b>10:30 · Miu Miu</b><span class="badge yellow">Chờ tiếp nhận</span></div><p class="muted-sm" style="margin:7px 0">Tắm sấy vệ sinh • Hồng Nhiên<br>Thợ Lê Thị Hoa · Fanpage</p><div class="row" style="flex-wrap:wrap"><button class="btn soft xs" data-action="checkin" data-id="LH002">Tiếp nhận →</button><button class="btn ghost xs" data-action="editAppt" data-id="LH002">Dời lịch</button><button class="btn danger xs" data-action="cancelAppt" data-id="LH002">Hủy</button></div></div></div></div></div></section><p class="footer-note">TiTi Pet • Interactive UX prototype • Dữ liệu lưu trong trình duyệt, không kết nối máy chủ • Bảng giá ví dụ để mô phỏng luồng</p></main></div></div>
+  </div>
+  <div id="modal"></div>
+  <div class="toast-stack" id="toasts"></div>
+  <script>
+'use strict';
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = x => String(x ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = n => new Intl.NumberFormat('vi-VN').format(Math.round(Number(n) || 0));
+const vn = n => fmt(n) + ' ₫';
+const iso = (date = new Date()) => { let d = new Date(date); return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-'); };
+const addDays = (date, day) => { let d = new Date((date || iso()) + 'T12:00:00'); d.setDate(d.getDate() + day); return iso(d); };
+const niceDate = d => d ? new Date(d + 'T12:00:00').toLocaleDateString('vi-VN') : '';
+const uid = (prefix = 'ID') => prefix + '-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
+const statuses = { 'pending': ['Chờ tiếp nhận', 'yellow'], 'received': ['Đã tiếp nhận', 'blue'], 'doing': ['Đang thực hiện', 'purple'], 'done': ['Hoàn thành', 'green'], 'handed': ['Đã bàn giao', 'gray'], 'cancel': ['Đã hủy', 'red'], 'rejected': ['Từ chối dịch vụ', 'red'], 'paid': ['Đã thanh toán', 'green'], 'draft': ['Chờ duyệt', 'yellow'], 'closed': ['Đã chốt', 'green'] };
+const badge = (key, label) => { const v = statuses[key] || [label || key, 'gray']; return `<span class="badge ${v[1]}">${esc(label || v[0])}</span>`; };
+const navgroups = [['TỔNG QUAN', [['dashboard', '▦', 'Trang chủ'], ['shift', '◷', 'Mở / chốt ca']]], ['VẬN HÀNH', [['appointments', '▦', 'Đặt lịch hẹn Spa'], ['reception', '🐾', 'Tiếp nhận thú cưng'], ['spa', '✂', 'Điều phối Spa'], ['pos', '▣', 'Bán hàng POS'], ['returns', '⇄', 'Đổi trả hàng'], ['invoices', '▤', 'Hóa đơn / giao dịch']]], ['KHÁCH HÀNG & KHO', [['customers', '♙', 'Khách hàng & VIP'], ['pets', '♡', 'Hồ sơ thú cưng'], ['inventory', '▤', 'Kho & nhập hàng'], ['catalog', '◈', 'Dịch vụ / sản phẩm'], ['promos', '%', 'Khuyến mãi']]], ['QUẢN TRỊ & BÀN GIAO', [['reports', '▥', 'Báo cáo thống kê'], ['flow', '⬡', 'Luồng nghiệp vụ / Figma']]]];
+const titles = { dashboard: ['Tổng quan cửa hàng', 'Toàn bộ hoạt động TiTi Pet trong một màn hình'], shift: ['Quản lý ca làm việc', 'Kiểm tra thiết bị, quỹ đầu ca và đối soát cuối ca'], appointments: ['Đặt lịch hẹn Spa', 'Kiểm tra khung giờ, phân công thợ và tiếp nhận đặt lịch đa kênh'], reception: ['Tiếp nhận thú cưng', 'Kiểm tra cân nặng, lông/da và xác nhận chi phí Spa'], spa: ['Điều phối & thực hiện Spa', 'Theo dõi ca dịch vụ theo trạng thái công việc'], pos: ['Bán hàng tại quầy — POS', 'Thanh toán dịch vụ và sản phẩm, áp dụng chính sách thành viên'], returns: ['Đổi / trả hàng', 'Tra cứu hóa đơn gốc và kiểm tra các điều kiện đổi trả'], invoices: ['Hóa đơn & lịch sử giao dịch', 'Tra cứu, in hóa đơn và theo dõi kênh bán hàng'], customers: ['Quản lý khách hàng & VIP', 'Lịch sử mua hàng, cấp thành viên và điểm tích lũy'], pets: ['Quản lý hồ sơ thú cưng', 'Thông tin chủ nuôi, cân nặng và lịch sử Spa'], inventory: ['Quản lý kho & hạn sử dụng', 'Nhập hàng, số lượng tồn và cảnh báo cận hạn'], catalog: ['Danh mục & bảng giá', 'Quản lý sản phẩm và bảng giá dịch vụ theo cân nặng'], promos: ['Chương trình khuyến mãi', 'Thiết lập ưu đãi và kiểm soát thời gian hiệu lực'], reports: ['Thống kê và báo cáo', 'Theo dõi doanh thu, hóa đơn, tình hình cửa hàng'], flow: ['Bản đồ luồng & Figma handoff', 'Toàn bộ use case, ngoại lệ và nguyên tắc thiết kế'] };
+// [00] DỮ LIỆU MẪU VÀ CẤU HÌNH NGHIỆP VỤ
+function seed() { const day = iso(); return { users: [{ name: 'Kiều Linh', role: 'cashier' }, { name: 'Nguyễn Văn Tú', role: 'spa' }, { name: 'Quản lý TiTi Pet', role: 'manager' }], customers: [{ id: 'KH001', name: 'Hồng Nhiên', phone: '0332353566', tier: 'Bạc', points: 12, spent: 2400000 }, { id: 'KH002', name: 'Lê Tuấn Anh', phone: '0912345678', tier: 'Vàng', points: 34, spent: 6700000 }, { id: 'KH003', name: 'Nguyễn Gia Hân', phone: '0909988776', tier: 'Kim cương', points: 80, spent: 12400000 }], pets: [{ id: 'PET001', owner: 'KH001', name: 'Miu Miu', species: 'Mèo', breed: 'Anh lông ngắn', weight: 4.5, note: 'Hơi nhát nước' }, { id: 'PET002', owner: 'KH002', name: 'Bobby', species: 'Chó', breed: 'Poodle', weight: 3.5, note: 'Dị ứng dầu gội mùi mạnh' }, { id: 'PET003', owner: 'KH003', name: 'Coco', species: 'Chó', breed: 'Pomeranian', weight: 5, note: '' }], staff: [{ id: 'SPA001', name: 'Nguyễn Văn Tú' }, { id: 'SPA002', name: 'Lê Thị Hoa' }, { id: 'SPA003', name: 'Trần Minh Anh' }], services: [{ id: 'SV001', name: 'Tắm sấy vệ sinh', species: 'Tất cả', base: 180000, duration: 90 }, { id: 'SV002', name: 'Spa toàn diện', species: 'Tất cả', base: 230000, duration: 120 }, { id: 'SV003', name: 'Cắt tỉa tạo kiểu', species: 'Tất cả', base: 210000, duration: 120 }, { id: 'SV004', name: 'Cạo lông', species: 'Tất cả', base: 160000, duration: 90 }, { id: 'SV005', name: 'Chải xơ rối', species: 'Tất cả', base: 120000, duration: 60 }], products: [{ id: 'SP001', barcode: '893500001', name: 'Snappy Tom pate Trái Cây 70g', cat: 'Thức ăn cho mèo', price: 20000, stock: 26, expiry: addDays(day, 42), emoji: '🥫', returnable: false }, { id: 'SP002', barcode: '893500002', name: 'Miuna Mix Topping 1kg', cat: 'Thức ăn cho mèo', price: 122000, stock: 8, expiry: addDays(day, 16), emoji: '🍚', returnable: false }, { id: 'SP003', barcode: '893500003', name: 'Dây dắt thú cưng cao cấp', cat: 'Phụ kiện', price: 95000, stock: 13, expiry: '', emoji: '🦮', returnable: true }, { id: 'SP004', barcode: '893500004', name: 'Vòng cổ điều chỉnh', cat: 'Phụ kiện', price: 80000, stock: 3, expiry: '', emoji: '🎀', returnable: true }, { id: 'SP005', barcode: '893500005', name: 'Đồ chơi bóng cao su', cat: 'Đồ chơi', price: 65000, stock: 17, expiry: '', emoji: '🎾', returnable: true }, { id: 'SP006', barcode: '893500006', name: 'Tã bỉm thú cưng', cat: 'Vệ sinh', price: 70000, stock: 9, expiry: addDays(day, 300), emoji: '🧻', returnable: false }, { id: 'SP007', barcode: '893500007', name: 'Súp thưởng PIPItao', cat: 'Thức ăn cho mèo', price: 6000, stock: 33, expiry: addDays(day, -2), emoji: '🐟', returnable: false }, { id: 'SP008', barcode: '893500008', name: 'Áo thú cưng pastel', cat: 'Phụ kiện', price: 130000, stock: 7, expiry: '', emoji: '👕', returnable: true }], appointments: [{ id: 'LH001', date: day, time: '09:00', customer: 'KH002', pet: 'PET002', service: 'SV002', staff: 'SPA001', channel: 'Điện thoại', status: 'pending', note: 'Bé cần làm nhẹ tay' }, { id: 'LH002', date: day, time: '10:30', customer: 'KH001', pet: 'PET001', service: 'SV001', staff: 'SPA002', channel: 'Fanpage', status: 'pending', note: 'Hơi nhát nước' }, { id: 'LH003', date: addDays(day, 2), time: '14:00', customer: 'KH003', pet: 'PET003', service: 'SV003', staff: 'SPA003', channel: 'Trực tiếp', status: 'pending', note: '' }], jobs: [], invoices: [], promos: [{ id: 'KM001', name: 'Khuyến mãi phụ kiện 10%', type: 'percent', value: 10, target: 'Phụ kiện', start: addDays(day, -2), end: addDays(day, 15), enabled: true }], returns: [], shifts: [], activeShift: null, login: null, activity: [] }; }
+let db;
+try {
+    db = JSON.parse(localStorage.getItem('titipet_proto_v3')) || seed();
+}
+catch (e) {
+    db = seed();
+}
+let ui = { page: 'dashboard', modal: null, selectedAppt: 'LH002', selectedInvoice: null, search: '', category: 'Tất cả', posItems: [], spaCartAppt: null, posCustomer: 'KH001', payMethod: 'Tiền mặt', orderSource: 'Tại quầy', promo: 'none', points: 0, customerQuery: '', petQuery: '', inventoryQuery: '', orderQuery: '', filterDay: iso(), appointmentCustomer: 'KH001', appointmentPet: '', walkinCustomer: '', walkinPet: '', quickContext: null, returnInvoice: '', returnItem: '', returnType: 'exchange', returnNew: '', shiftDenom: false, closeCash: '', notice: null };
+function save() { try {
+    localStorage.setItem('titipet_proto_v3', JSON.stringify(db));
+}
+catch (e) {
+    toast('Không thể lưu localStorage. Dữ liệu chỉ còn trong phiên hiện tại.', true);
+} }
+function log(msg) { db.activity.unshift({ when: new Date().toISOString(), msg }); db.activity = db.activity.slice(0, 20); }
+const cu = id => db.customers.find(x => x.id === id) || { name: 'Khách lẻ', phone: '', tier: '', points: 0, spent: 0 };
+const pet = id => db.pets.find(x => x.id === id) || { name: '-', species: 'Chó', weight: 0 };
+const svc = id => db.services.find(x => x.id === id) || { name: 'Dịch vụ', base: 0, duration: 90 };
+const stf = id => db.staff.find(x => x.id === id) || { name: 'Chưa phân công' };
+const pr = id => db.products.find(x => x.id === id);
+const activeshift = () => db.shifts.find(x => x.id === db.activeShift && x.status === 'open');
+const role = () => db.login?.role || 'cashier';
+const isManager = () => role() === 'manager';
+function canPage(p) { if (!db.login)
+    return false; if (role() === 'spa' && !['dashboard', 'appointments', 'spa', 'flow'].includes(p))
+    return false; if (['reports', 'inventory', 'catalog', 'promos'].includes(p) && !isManager())
+    return false; if (p === 'pos' && role() === 'spa')
+    return false; if (p === 'returns' && role() === 'spa')
+    return false; if (p === 'shift' && role() === 'spa')
+    return false; return true; }
+function requireShift() { if (!activeshift()) {
+    toast('Vui lòng mở ca làm việc trước khi thanh toán hoặc tiếp nhận dịch vụ.', true);
+    navigate('shift');
+    return false;
+} return true; }
+function toast(msg, bad = false) { let el = document.createElement('div'); el.className = 'toast ' + (bad ? 'bad' : 'ok'); el.textContent = msg; $('#toasts').appendChild(el); setTimeout(() => el.remove(), 4500); }
+// [01] CHUYỂN TRANG VÀ GIỮ TRẠNG THÁI QUA HTML FILES
+function navigate(p) {
+    if (!canPage(p)) {
+        toast('Tài khoản hiện tại không có quyền truy cập phân hệ này.', true);
+        return;
+    }
+    ui.page = p;
+    ui.modal = null;
+    ui.search = '';
+    persistMultiPageUI();
+    window.location.assign((document.body.dataset.prefix || '') + p + '.html');
+}
+function iconMark(txt) { return `<span aria-hidden="true">${txt}</span>`; }
+// [02] BỐ CỤC CHUNG / SIDEBAR / HEADER
+function shell() { const title = titles[ui.page] || titles.dashboard; return `<div class="app"><aside class="sidebar" id="sidebar"><div class="brand"><div class="brandlogo">🐾</div><div><div class="brandname">TiTi Pet</div><div class="brandsub">MANAGEMENT SYSTEM</div></div></div><nav class="menu">${navgroups.map(group => `<div class="menu-label">${group[0]}</div>${group[1].filter(n => canPage(n[0])).map(n => `<a href="${(document.body.dataset.prefix || '') + n[0] + '.html'}" class="nav ${ui.page === n[0] ? 'active' : ''}" data-go="${n[0]}"><span class="nav-ico">${n[1]}</span><span>${n[2]}</span>${n[0] === 'appointments' ? `<span class="num">${db.appointments.filter(a => a.date === iso() && a.status === 'pending').length}</span>` : ''}</a>`).join('')}`).join('')}</nav><div class="side-bottom"><div class="side-user"><span class="side-avatar">${role() === 'spa' ? '✂' : isManager() ? '★' : 'KL'}</span><div><b style="color:white;font-size:12px">${esc(db.login.name)}</b><div style="opacity:.75;margin-top:3px">${role() === 'cashier' ? 'Lễ tân / Thu ngân' : role() === 'spa' ? 'Thợ Spa' : 'Quản lý cửa hàng'}</div></div></div><div class="row between"><span>TiTi Pet Management</span><b>v2.6 UI</b></div><button class="nav" data-action="logout" style="margin-top:7px;padding:8px 0">↪ Đăng xuất / Đổi vai trò</button></div></aside><div class="main"><header class="topbar"><div class="row" style="min-width:0"><button class="btn soft sm nav-toggle" data-action="menu">☰</button><div class="breadcrumb">Quản lý cửa hàng <span>›</span> <b>${title[0]}</b></div></div><div class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Tìm khách hàng, thú cưng, hóa đơn..." aria-label="Tìm kiếm toàn hệ thống"><span class="kbd">↵</span></div><div class="userarea"><span class="circle" title="Dữ liệu mô phỏng">🔔</span><div class="userpill" data-action="logout" title="Chọn tài khoản khác"><div class="circle" style="background:#e4efff">👤</div><span class="meta"><b style="color:#264a78;font-size:12px">${esc(db.login.name)}</b><small>${role() === 'cashier' ? 'Thu ngân' : role() === 'spa' ? 'Thợ Spa' : 'Quản lý'}</small></span><span class="muted">⌄</span></div></div></header><main class="content"><div class="heading"><div><div class="eyebrow">TI TI PET • WORKSPACE</div><h1>${title[0]}</h1><p class="subtitle">${title[1]}</p></div><div class="actions"><span class="chip">📅 ${niceDate(iso())}</span><span class="badge ${activeshift() ? 'green' : 'yellow'}">● ${activeshift() ? 'Đang mở ca' : 'Chưa mở ca'}</span>${ui.page !== 'flow' ? `<button class="btn ghost sm" data-go="flow">ⓘ Luồng chức năng</button>` : ''}</div></div><section id="view">${pageHTML()}</section><p class="footer-note">TiTi Pet • Interactive UX prototype • Dữ liệu lưu trong trình duyệt, không kết nối máy chủ • Bảng giá ví dụ để mô phỏng luồng</p></main></div></div>`; }
+// [03] ĐĂNG NHẬP
+function loginHTML() { return `<div class="login"><section class="login-side"><div><div style="font-size:24px;font-weight:850">🐾 TiTi Pet <span style="font-size:11px;font-weight:500;letter-spacing:2px">SHOP & SPA</span></div><div class="bigpets">🐶 🐱</div><h1>Chăm sóc thú cưng.<br>Quản lý dễ dàng.</h1><p>Hệ thống vận hành Spa & bán lẻ tại quầy, kết nối lễ tân, thợ Spa và quản lý trên cùng một hành trình.</p></div><div style="font-size:12px;opacity:.75">♡ Quản lý thú cưng &nbsp;&nbsp; ◈ Lịch Spa &nbsp;&nbsp; ▣ Bán phụ kiện &nbsp;&nbsp; ◷ Đối soát ca</div></section><section class="login-box"><div style="font-size:13px;color:#4878b2;font-weight:800;margin-bottom:19px">WELCOME BACK · TITIPET</div><h2>Đăng nhập</h2><p>Chọn vai trò để trải nghiệm đầy đủ các màn hình và nhánh xử lý theo báo cáo nghiệp vụ.</p><form id="loginForm"><div class="field"><label>Tên đăng nhập *</label><input class="inp" name="username" placeholder="nhanvien@titipet.vn" value="kieulinh@titipet.vn" required></div><div class="field"><label>Mật khẩu *</label><input class="inp" name="password" type="password" value="123456" placeholder="Nhập mật khẩu" required></div><div class="field"><label>Vai trò mô phỏng</label><select class="select" name="role"><option value="cashier">Lễ tân / Thu ngân</option><option value="spa">Thợ Spa</option><option value="manager">Quản lý cửa hàng</option></select></div><button type="submit" class="btn wide">ĐĂNG NHẬP VÀO HỆ THỐNG →</button></form><p style="text-align:center;margin:26px 0 9px;font-size:12px">HOẶC TRẢI NGHIỆM NHANH THEO VAI TRÒ</p><div class="login-roles"><button data-action="quicklogin" data-role="cashier">🧾<br>Lễ tân</button><button data-action="quicklogin" data-role="spa">✂<br>Thợ Spa</button><button data-action="quicklogin" data-role="manager">📈<br>Quản lý</button></div><div class="note" style="margin-top:30px">🔒 Đây là bản mô phỏng giao diện để dựng Figma. Đăng nhập và phân quyền chỉ được mô phỏng phía trình duyệt, không phải cơ chế bảo mật thực tế.</div></section></div>`; }
+function hd(actions = '') { return `<div class="actions">${actions}</div>`; }
+function empty(title, desc = 'Chưa có dữ liệu ở mục này') { return `<div class="empty"><div class="em">🐾</div><b>${esc(title)}</b><p>${esc(desc)}</p></div>`; }
+function pageHTML() { switch (ui.page) {
+    case 'dashboard': return viewDashboard();
+    case 'shift': return viewShift();
+    case 'appointments': return viewAppointments();
+    case 'reception': return viewReception();
+    case 'spa': return viewSpa();
+    case 'pos': return viewPOS();
+    case 'returns': return viewReturns();
+    case 'invoices': return viewInvoices();
+    case 'customers': return viewCustomers();
+    case 'pets': return viewPets();
+    case 'inventory': return viewInventory();
+    case 'catalog': return viewCatalog();
+    case 'promos': return viewPromos();
+    case 'reports': return viewReports();
+    case 'flow': return viewFlow();
+    default: return viewDashboard();
+} }
+function render() {
+    document.title = 'TiTi Pet — ' + (TITIPET_PAGE === 'login' ? 'Đăng nhập' : (titles[ui.page]?.[0] || 'Đăng nhập'));
+    $('#root').innerHTML = TITIPET_PAGE === 'login' ? loginHTML() : (db.login ? shell() : loginHTML());
+    renderModal();
+}
+function options(arr, valueKey, label, selected, blank = '-- Chọn --') { return (blank ? `<option value="">${blank}</option>` : '') + arr.map(x => `<option value="${esc(x[valueKey])}" ${String(x[valueKey]) === String(selected) ? 'selected' : ''}>${esc(typeof label === 'function' ? label(x) : x[label])}</option>`).join(''); }
+// [04] MÀN HÌNH DASHBOARD
+function viewDashboard() { let todays = db.appointments.filter(a => a.date === iso()), low = db.products.filter(p => p.stock <= 5), revenue = db.invoices.filter(x => x.status === 'paid').reduce((a, i) => a + i.total, 0); return `<div class="hero" style="margin-bottom:19px"><div><div style="letter-spacing:1.3px;font-size:11px;opacity:.8">GOOD DAY, ${esc(db.login.name.toUpperCase())}!</div><h2>Chào mừng bạn đến với TiTi Pet 🐾</h2><p>Chủ động lịch Spa, thanh toán nhanh, kiểm soát kho và cập nhật kết quả ca trực trên một hệ thống thống nhất.</p><button class="btn" data-go="${activeshift() ? 'appointments' : 'shift'}">${activeshift() ? '＋ Đặt lịch hẹn mới' : '◷ Bắt đầu mở ca làm việc'}</button></div><div class="hero-art">🐕‍🦺</div></div><div class="grid cols-4" style="margin-bottom:19px"><div class="card metric"><span class="m-bg">🐾</span><div class="m-icon tone-blue">🐾</div><b>${db.pets.length}</b><div class="label">Tổng thú cưng</div><div class="trend">Hồ sơ đã ghi nhận</div></div><div class="card metric"><span class="m-bg">▦</span><div class="m-icon tone-orange">📆</div><b>${todays.length}</b><div class="label">Lịch hẹn hôm nay</div><div class="trend">${todays.filter(a => a.status === 'pending').length} lịch chờ tiếp nhận</div></div><div class="card metric"><span class="m-bg">▣</span><div class="m-icon tone-teal">🧾</div><b>${db.invoices.length}</b><div class="label">Hóa đơn thanh toán</div><div class="trend">${vn(revenue)} doanh số mô phỏng</div></div><div class="card metric"><span class="m-bg">◈</span><div class="m-icon tone-violet">✂</div><b>${db.jobs.filter(j => !['handed', 'rejected'].includes(j.status)).length}</b><div class="label">Ca Spa đang xử lý</div><div class="trend">${low.length} mặt hàng sắp hết</div></div></div><div class="split"><div class="grid"><div class="card pad"><div class="card-head"><div><h3>Lịch phục vụ hôm nay</h3><small>Trạng thái đồng bộ giữa quầy và thợ Spa</small></div><button class="btn soft sm" data-go="appointments">Xem tất cả →</button></div>${todays.sort((a, b) => a.time.localeCompare(b.time)).length ? todays.map(a => `<div class="timeline"><div class="time-col">${esc(a.time)}</div><div class="timeline-content"><div class="row between"><div><h4>${pet(a.pet).species === 'Mèo' ? '🐱' : '🐶'} ${esc(pet(a.pet).name)} <span class="muted-sm">· ${esc(cu(a.customer).name)}</span></h4><p>${esc(svc(a.service).name)} • Thợ ${esc(stf(a.staff).name)} • ${esc(a.channel)}</p></div>${badge(a.status)}</div></div></div>`).join('') : empty('Chưa có lịch hôm nay')}</div><div class="card pad"><div class="card-head"><h3>Thao tác nhanh</h3><small>Đi đến màn hình phù hợp</small></div><div class="grid cols-5" style="gap:11px">${[['🐾', 'Thêm thú cưng', 'newPet'], ['📅', 'Đặt Spa', 'appointments'], ['🛒', 'Bán hàng', 'pos'], ['🧾', 'Xem hóa đơn', 'invoices'], ['👤', 'Thêm khách', 'newCustomer']].map(([i, t, p]) => `<button class="product" style="text-align:center;padding:13px 5px" ${p.startsWith('new') ? 'data-action="' + p + '"' : 'data-go="' + p + '"'}><span style="font-size:24px">${i}</span><div style="font-size:11px;margin-top:9px;font-weight:730;color:#6681a3">${t}</div></button>`).join('')}</div></div></div><div class="grid"><div class="card pad"><div class="card-head"><h3>Cảnh báo vận hành</h3><button class="btn ghost sm" data-go="${isManager() ? 'inventory' : 'flow'}">Chi tiết</button></div>${low.length ? low.slice(0, 4).map(p => `<div class="listline"><span class="peticon">${p.emoji}</span><div style="flex:1"><b style="color:#355676">${esc(p.name)}</b><div class="muted-sm">Chỉ còn ${p.stock} sản phẩm</div></div>${badge('draft', 'Sắp hết')}</div>`).join('') : empty('Kho ổn định', 'Không có cảnh báo tồn kho thấp')}${db.products.filter(p => p.expiry && p.expiry <= addDays(iso(), 30)).slice(0, 2).map(p => `<div class="listline"><span class="peticon">⏳</span><div style="flex:1"><b>${esc(p.name)}</b><div class="muted-sm">HSD: ${niceDate(p.expiry)}</div></div><span class="badge red">Cận/hết hạn</span></div>`).join('')}</div><div class="card pad"><div class="card-head"><h3>Hoạt động gần đây</h3></div>${db.activity.length ? db.activity.slice(0, 5).map(a => `<div class="listline"><div class="circle">✓</div><div><b style="font-size:12px">${esc(a.msg)}</b><div class="muted-sm">${new Date(a.when).toLocaleString('vi-VN')}</div></div></div>`).join('') : `<div class="note">Thao tác tạo lịch, bán hàng và chốt ca sẽ xuất hiện tại đây.</div>`}</div></div></div>`; }
+// [05] MỞ CA / ĐỐI SOÁT / CHỐT CA
+function viewShift() {
+    let s = activeshift(), pending = db.shifts.filter(x => x.status === 'draft');
+    if (!s) {
+        return `<div class="grid cols-2"><div class="card pad"><div class="card-head"><div><h3>◷ Thông tin ca & quỹ tiền mặt đầu ca</h3><small>Số tiền thực tế tại két khi tiếp nhận ca</small></div><span class="badge blue">Ca làm việc</span></div><form id="openShiftForm" class="formgrid"><div class="field"><label>Loại ca trực</label><select name="type" class="select"><option>Ca Sáng</option><option>Ca Chiều</option><option>Ca Tối</option></select></div><div class="field"><label>Thu ngân tiếp nhận</label><input class="inp" disabled value="${esc(db.login?.name)}"></div><div class="field full"><label>Tổng tiền mặt đầu ca (VNĐ) *</label><input class="inp" type="number" min="0" value="1500000" name="opening" required><span class="hint">Tiền dự trữ thối tiền lẻ tham khảo từ màn hình mẫu: 1.500.000đ.</span></div><div class="field full"><label>Ghi chú bàn giao đầu ca</label><textarea class="textarea" name="note">Máy in bill còn 2 cuộn giấy, két tiền đủ tiền lẻ thối khách.</textarea></div><div class="field full"><button class="btn wide" type="submit">🔐 Xác nhận mở ca & kích hoạt POS</button></div></form></div><div class="grid"><div class="card pad"><div class="card-head"><h3>☑ Kiểm tra thiết bị bán hàng</h3><span class="badge yellow">Yêu cầu kiểm tra</span></div><div class="grid" style="gap:15px">${['Máy in nhiệt sẵn sàng giấy in', 'Đầu quét mã vạch hoạt động ổn định', 'Mã QR ngân hàng đặt đúng vị trí quầy', 'Cân điện tử đã chuẩn hóa (0.0 kg)'].map((t, i) => `<label class="choice"><input type="checkbox" form="openShiftForm" name="check${i}" value="1" required><span>${t}</span></label>`).join('')}</div></div><div class="card pad"><div class="card-head"><h3>Lịch sử & phiếu chờ duyệt</h3></div>${db.shifts.slice(0, 3).map(s => `<div class="listline"><div>◷</div><div style="flex:1"><b>${esc(s.type)} — ${niceDate(s.date)}</b><div class="muted-sm">${esc(s.staff)} · ${vn(s.opening)}</div></div>${s.status === 'open' ? badge('received', 'Đang mở') : badge(s.status)}</div>`).join('') || '<p class="muted">Chưa có dữ liệu ca trước.</p>'}${db.shifts.filter(s => s.status === 'rejected' && s.staff === db.login.name).map(s => `<div class="listline"><div style="flex:1"><b>Phiếu ${esc(s.id)} bị trả về</b><div class="muted-sm">${esc(s.rejectReason || 'Cần đối soát lại')}</div></div><button class="btn soft xs" data-action="reviseShift" data-id="${s.id}">Kiểm tra lại</button></div>`).join('')}${isManager() ? db.shifts.filter(s => s.status === 'draft').map(c => `<div class="listline"><div style="flex:1"><b>Phiếu chờ duyệt ${esc(c.id)}</b><div class="muted-sm">Lệch tiền mặt: ${vn(c.diff || 0)} · Ngân hàng: ${vn(c.bankDiff || 0)}</div></div><button class="btn green xs" data-action="approveShift" data-id="${c.id}">Duyệt</button><button class="btn danger xs" data-action="rejectShift" data-id="${c.id}">Từ chối</button></div>`).join('') : ''}</div></div></div>`;
+    }
+    let tx = db.invoices.filter(i => i.shiftId === s.id && i.status === 'paid'), cash = tx.filter(i => i.method === 'Tiền mặt').reduce((a, i) => a + i.total, 0), bank = tx.filter(i => i.method !== 'Tiền mặt').reduce((a, i) => a + i.total, 0), exp = s.opening + cash - s.cashOut;
+    let summary = `<div class="grid cols-4"><div class="card metric"><div class="m-icon tone-blue">💵</div><b style="font-size:24px">${vn(s.opening)}</b><div class="label">Quỹ đầu ca</div></div><div class="card metric"><div class="m-icon tone-teal">🧾</div><b style="font-size:24px">${vn(cash)}</b><div class="label">Doanh thu tiền mặt</div></div><div class="card metric"><div class="m-icon tone-violet">▧</div><b style="font-size:24px">${vn(bank)}</b><div class="label">Chuyển khoản / Ví điện tử</div></div><div class="card metric"><div class="m-icon tone-orange">💰</div><b style="font-size:24px">${vn(exp)}</b><div class="label">Tiền mặt kỳ vọng tại két</div></div></div>`;
+    return `<div class="note good" style="margin-bottom:17px">✓ ${esc(s.type)} đã được kích hoạt. Thu ngân: ${esc(s.staff)} · Mã ca: ${esc(s.id)} · ${tx.length} giao dịch thành công.</div>${summary}<div class="split" style="margin-top:18px"><div class="card pad"><div class="card-head"><h3>Đối soát cuối ca</h3><button class="btn ghost sm" data-go="invoices">Tra cứu giao dịch →</button></div><form id="closeShiftForm" class="formgrid"><div class="field"><label>Tiền mặt thực đếm (VNĐ) *</label><input class="inp" type="number" min="0" name="counted" value="${exp}" required></div><div class="field"><label>Số tiền chuyển khoản đối chiếu (VNĐ) *</label><input class="inp" type="number" min="0" name="bankActual" value="${bank}" required></div><div class="field full"><label>Tiền chi từ két trong ca (VNĐ)</label><input class="inp" type="number" min="0" name="cashOut" value="${s.cashOut}" required></div><div class="field full"><label>Ghi chú sai lệch / bàn giao</label><textarea class="textarea" name="note" placeholder="Ghi lý do chênh lệch nếu có"></textarea></div><div class="field full"><div class="note warn">Hệ thống đối chiếu tiền mặt = quỹ đầu ca + thu tiền mặt – chi tiền mặt trong ca. Chênh lệch phải ghi lý do trước khi gửi duyệt. Quản lý là người phê duyệt cuối.</div></div><div class="field full"><button class="btn wide" type="submit">📋 Lập phiếu chốt ca & gửi quản lý xác nhận</button></div></form></div><div class="card pad"><div class="card-head"><h3>Giao dịch trong ca</h3></div>${tx.length ? tx.slice(-6).reverse().map(i => `<div class="listline"><div class="circle">▣</div><div style="flex:1"><b>${esc(i.id)}</b><div class="muted-sm">${esc(i.method)} • ${esc(i.source)}</div></div><b>${vn(i.total)}</b></div>`).join('') : empty('Chưa có giao dịch', 'Có thể dùng menu POS để tạo hóa đơn thử')}${isManager() && pending.length ? `<div class="divider"></div>${pending.map(c => `<div class="listline"><div style="flex:1"><b>Chờ duyệt: ${esc(c.id)}</b><div class="muted-sm">Chênh lệch ${vn(c.diff || 0)}</div></div><button class="btn green sm" data-action="approveShift" data-id="${c.id}">Duyệt</button><button class="btn danger sm" data-action="rejectShift" data-id="${c.id}">Từ chối</button></div>`).join('')}` : ''}</div></div>`;
+}
+// [06] ĐẶT LỊCH VÀ ĐIỀU PHỐI LỊCH
+function viewAppointments() { if (role() === 'spa') {
+    let assigned = db.appointments.filter(a => a.staff === 'SPA001').sort((a, b) => (a.date + ' ' + a.time).localeCompare(b.date + ' ' + b.time));
+    return `<div class="note" style="margin-bottom:18px">Lịch chỉ đọc dành cho thợ Nguyễn Văn Tú. Lễ tân quản lý việc tạo/dời/hủy lịch; thợ cập nhật ca được giao tại Điều phối Spa.</div><div class="card pad"><div class="card-head"><h3>Ca Spa được phân công cho bạn</h3><button class="btn soft sm" data-go="spa">Xem bảng công việc →</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Ngày</th><th>Giờ</th><th>Thú cưng</th><th>Khách</th><th>Dịch vụ</th><th>Trạng thái</th></tr></thead><tbody>${assigned.map(a => `<tr><td>${niceDate(a.date)}</td><td>${esc(a.time)}</td><td><b>${esc(pet(a.pet).name)}</b></td><td>${esc(cu(a.customer).name)}</td><td>${esc(svc(a.service).name)}</td><td>${badge(a.status)}</td></tr>`).join('') || '<tr><td colspan="6">Chưa có ca được phân công</td></tr>'}</tbody></table></div></div>`;
+} let list = db.appointments.filter(a => !ui.filterDay || a.date === ui.filterDay).sort((a, b) => a.time.localeCompare(b.time)); return `<div class="split"><div class="card pad"><div class="card-head"><div><h3>▦ Phiếu tiếp nhận lịch hẹn Spa</h3><small>Ghi từ quầy, điện thoại, Fanpage hoặc TikTok</small></div></div><form id="apptForm" class="formgrid"><div class="field"><div class="row between quick-field-head"><label>Số điện thoại / Khách hàng *</label><button type="button" class="btn soft xs quick-add" data-action="newCustomer" data-quick="customer" title="Tạo khách hàng ngay tại đây">＋ Thêm khách mới</button></div><select class="select" name="customer" id="apptCustomer" required>${options(db.customers, 'id', c => c.name + ' · ' + c.phone, ui.appointmentCustomer || 'KH001')}</select></div><div class="field"><div class="row between quick-field-head"><label>Thú cưng *</label><button type="button" class="btn soft xs quick-add" data-action="newPet" data-quick="pet" title="Tạo hồ sơ thú cưng ngay tại đây">＋ Thêm thú cưng</button></div><select class="select" name="pet" id="apptPet" required>${options(db.pets.filter(p => p.owner === (ui.appointmentCustomer || 'KH001')), 'id', p => p.name + ' (' + p.species + ' · ' + cu(p.owner).name + ')', ui.appointmentPet || '')}</select></div><div class="field"><label>Dịch vụ dự kiến *</label><select class="select" name="service" required>${options(db.services, 'id', s => s.name + ' · ' + vn(s.base), 'SV001')}</select></div><div class="field"><label>Thợ Spa phụ trách *</label><select class="select" name="staff" required>${options(db.staff, 'id', 'name', 'SPA001')}</select></div><div class="field"><label>Ngày hẹn *</label><input class="inp" type="date" name="date" min="${iso()}" value="${iso()}" required></div><div class="field"><label>Khung giờ hẹn *</label><select name="time" class="select">${['08:00', '09:00', '10:00', '10:30', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'].map(t => `<option ${t === '11:00' ? 'selected' : ''}>${t}</option>`).join('')}</select></div><div class="field"><label>Nguồn đặt lịch</label><select class="select" name="channel"><option>Trực tiếp</option><option>Điện thoại</option><option>Fanpage</option><option>TikTok</option></select></div><div class="field"><label>Giờ trả pet dự kiến</label><input class="inp" value="Tự tính theo thời lượng" disabled></div><div class="field full"><label>Ghi chú đặc biệt từ khách</label><textarea class="textarea" name="note" placeholder="Ví dụ: Bé hơi nhát nước, cần thao tác nhẹ nhàng..." rows="2"></textarea></div><div class="field full"><div class="note">✓ Hệ thống kiểm tra trùng lịch theo <b>thợ + khoảng thời gian phục vụ</b>. Đặt lịch online vẫn phải kiểm tra thực tế thú cưng tại quầy, chưa phát sinh hóa đơn.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Xác nhận và lưu lịch hẹn Spa</button></div></form></div><div class="card pad"><div class="card-head"><div><h3>Lịch làm việc của thợ</h3><small>${list.length} ca hẹn ngày đã chọn</small></div><input class="inp" style="width:153px" type="date" value="${ui.filterDay}" id="filterApptDate"></div>${list.length ? list.map(a => `<div class="listline align-top"><span class="peticon ${pet(a.pet).species === 'Mèo' ? 'cat' : ''}">${pet(a.pet).species === 'Mèo' ? '🐱' : '🐶'}</span><div style="flex:1;min-width:0"><div class="row between" style="gap:5px"><b>${esc(a.time)} · ${esc(pet(a.pet).name)}</b>${badge(a.status)}</div><p class="muted-sm" style="margin:7px 0">${esc(svc(a.service).name)} • ${esc(cu(a.customer).name)}<br>Thợ ${esc(stf(a.staff).name)} · ${esc(a.channel)}</p><div class="row" style="flex-wrap:wrap">${a.status === 'pending' ? `<button class="btn soft xs" data-action="checkin" data-id="${a.id}">Tiếp nhận →</button><button class="btn ghost xs" data-action="editAppt" data-id="${a.id}">Dời lịch</button><button class="btn danger xs" data-action="cancelAppt" data-id="${a.id}">Hủy</button>` : a.status === 'received' || a.status === 'doing' ? `<button class="btn soft xs" data-go="spa">Xem tiến độ →</button>` : ''}</div></div></div>`).join('') : empty('Không có lịch vào ngày này', 'Chọn ngày khác hoặc tạo lịch hẹn mới')}</div></div>`; }
+function calcSpa(serviceId, weight, coat) { let sv = svc(serviceId), w = Number(weight) || 0; let weightFee = w > 10 ? 120000 : w > 5 ? 60000 : 0; let coatFee = coat === 'rối lông' ? 50000 : coat === 've rận' ? 70000 : 0; return { base: sv.base, weightFee, coatFee, total: sv.base + weightFee + coatFee }; }
+// [07] TIẾP NHẬN THÚ CƯNG
+function viewReception() { let arr = db.appointments.filter(a => a.status === 'pending'), a = db.appointments.find(a => a.id === ui.selectedAppt && a.status === 'pending') || arr[0]; if (a)
+    ui.selectedAppt = a.id; let p = a ? pet(a.pet) : null, price = a ? calcSpa(a.service, p.weight, 'normal') : null; return `<div class="grid cols-3" style="margin-bottom:18px">${[['Chờ tiếp nhận', db.appointments.filter(a => a.status === 'pending').length, 'tone-orange', '⏳'], ['Đang phục vụ', db.jobs.filter(j => ['received', 'doing'].includes(j.status)).length, 'tone-blue', '✂'], ['Đã hoàn thành', db.jobs.filter(j => ['done', 'handed'].includes(j.status)).length, 'tone-teal', '✓']].map(c => `<div class="card metric" style="padding:17px 20px"><div class="row"><div class="m-icon ${c[2]}" style="margin:0">${c[3]}</div><div><b>${c[1]}</b><div class="label" style="margin:0">${c[0]}</div></div></div></div>`).join('')}</div><div class="split"><div class="card pad"><div class="card-head"><div><h3>🐾 Phiếu tiếp nhận & thăm khám thực tế</h3><small>Nhận thú cưng theo lịch hoặc khách vãng lai</small></div><button class="btn soft sm" data-action="walkin">＋ Khách vãng lai</button></div>${a ? `<div class="grid cols-3" style="gap:12px;margin-bottom:19px"><div class="note"><small>CHỦ THÚ CƯNG</small><br><b>${esc(cu(a.customer).name)}</b><br>${esc(cu(a.customer).phone)}</div><div class="note"><small>THÚ CƯNG</small><br><b>${esc(p.name)}</b><br>${esc(p.species + ' • ' + p.breed)}</div><div class="note"><small>MÃ PHIẾU</small><br><b>${esc(a.id)}</b><br>${badge(a.status)}</div></div><form id="receptionForm" class="formgrid"><input type="hidden" name="apptId" value="${a.id}"><div class="field"><label>Cân nặng thực tế (kg) *</label><input class="inp" id="rxWeight" name="weight" type="number" min="0.1" max="100" step="0.1" value="${p.weight}" required></div><div class="field"><label>Dịch vụ xác nhận *</label><select class="select" id="rxService" name="service">${options(db.services, 'id', x => x.name + ' · ' + vn(x.base), a.service, '')}</select></div><div class="field full"><label>Tình trạng lông & da khi nhận *</label><div class="grid cols-3" style="gap:9px">${[['normal', 'Bình thường', 'Không có dấu hiệu lạ'], ['rối lông', 'Bị rối lông', '+50.000đ demo'], ['ve rận', 'Bị ve / rận', '+70.000đ demo']].map((i, index) => `<label class="choice"><input type="radio" name="coat" value="${i[0]}" ${index === 0 ? 'checked' : ''}><div><b style="font-size:12px">${i[1]}</b><div class="muted-sm">${i[2]}</div></div></label>`).join('')}</div></div><div class="field"><label>Thợ Spa phụ trách</label><select class="select" name="staff">${options(db.staff, 'id', 'name', a.staff, '')}</select></div><div class="field"><label>Giờ trả pet dự kiến</label><input class="inp" disabled value="${esc(a.time)} + ${svc(a.service).duration} phút"></div><div class="field full"><label>Ghi chú tình trạng thực tế</label><textarea class="textarea" name="note" rows="2" placeholder="Ghi chú điều chỉnh dịch vụ hoặc yêu cầu từ chủ nuôi">${esc(a.note || '')}</textarea></div><div class="field full"><div id="rxPrice" class="note good">Giá cơ sở: ${vn(price.base)} · Phụ thu cân nặng: ${vn(price.weightFee)} · Phụ thu lông/da: ${vn(0)} → <b>${vn(price.total)}</b></div></div><div class="field full"><div class="note warn">Dịch vụ Spa phải được <b>thanh toán đủ 100%</b> trước khi bàn giao cho thợ. Có quyền từ chối nếu không phù hợp; ghi lý do, không tự bổ sung tiêu chí từ chối.</div></div><div class="field full"><div class="row between"><button type="button" class="btn danger" data-action="rejectAppt" data-id="${a.id}">× Từ chối dịch vụ</button><button type="submit" class="btn">→ Tạo hóa đơn & thanh toán 100%</button></div></div></form>` : empty('Chưa có lịch chờ tiếp nhận', 'Tạo lịch mới hoặc nhấn Khách vãng lai')}</div><div class="card pad"><div class="card-head"><h3>Danh sách khách chờ</h3><button class="btn soft sm" data-go="appointments">Xem lịch →</button></div>${arr.length ? arr.map(x => `<button class="listline" data-action="pickAppt" data-id="${x.id}" style="width:100%;border:0;border-bottom:1px solid #eef2f6;background:${a?.id === x.id ? '#f0f6ff' : 'transparent'};text-align:left;border-radius:9px;padding:12px"><span class="peticon ${pet(x.pet).species === 'Mèo' ? 'cat' : ''}">${pet(x.pet).species === 'Mèo' ? '🐱' : '🐶'}</span><div style="flex:1"><b>${esc(pet(x.pet).name)}</b><div class="muted-sm">${esc(cu(x.customer).name)} • ${esc(svc(x.service).name)}<br>${niceDate(x.date)} ${esc(x.time)}</div></div>${badge(x.status)}</button>`).join('') : empty('Đã tiếp nhận hết lịch chờ')}</div></div>`; }
+// [08] THỢ SPA / TIẾN ĐỘ / BÀN GIAO
+function viewSpa() { let cols = [['received', 'Chờ thực hiện', 'blue'], ['doing', 'Đang thực hiện', 'yellow'], ['done', 'Đã hoàn thành', 'green'], ['handed', 'Đã bàn giao', 'gray']]; let jobs = role() === 'spa' ? db.jobs.filter(j => j.staff === 'SPA001') : db.jobs; return `<div class="note" style="margin-bottom:19px">✂ Thợ Spa chỉ xem và cập nhật các ca được phân công. Chuyển trạng thái: Đã tiếp nhận → Đang thực hiện → Hoàn thành → Đã bàn giao. Ghi nhận vật tư và giờ trả thực tế.</div><div class="workboard">${cols.map(([status, title, color]) => `<div class="lane"><h4><span>${title}</span><span class="badge ${color}">${jobs.filter(j => j.status === status).length}</span></h4>${jobs.filter(j => j.status === status).map(j => `<div class="job"><div class="row between"><span class="peticon ${pet(j.pet).species === 'Mèo' ? 'cat' : ''}">${pet(j.pet).species === 'Mèo' ? '🐱' : '🐶'}</span>${badge(j.status)}</div><h4>${esc(pet(j.pet).name)} <span class="muted-sm">${esc(pet(j.pet).species)}</span></h4><p>${esc(svc(j.service).name)} · ${esc(stf(j.staff).name)}</p><p>Khách: ${esc(cu(j.customer).name)}</p><p>Mã lịch: ${esc(j.apptId || 'Khách vãng lai')}</p>${j.material ? `<p>Vật tư: ${esc(j.material)}</p>` : ''}${status === 'received' ? `<button class="btn soft sm" data-action="jobNext" data-id="${j.id}">Bắt đầu thực hiện →</button>` : status === 'doing' ? `<button class="btn sm" data-action="jobNext" data-id="${j.id}">✓ Đánh dấu hoàn thành</button>` : status === 'done' ? `<button class="btn green sm" data-action="jobNext" data-id="${j.id}">Bàn giao thú cưng</button>` : `<p class="muted-sm">Bàn giao: ${esc(j.handedAt || '')}</p>`}${status === 'handed' && j.foodCharge > 0 && !j.feePaid && role() !== 'spa' ? `<button class="btn soft sm" data-action="payFood" data-id="${j.id}">Thu phí thức ăn ${vn(j.foodCharge)}</button>` : ''}${status === 'doing' ? `<button class="btn ghost sm" style="width:100%;margin-top:5px" data-action="materials" data-id="${j.id}">✎ Ghi nhận vật tư</button>` : ''}</div>`).join('') || `<div class="empty" style="padding:20px 8px"><span>🐾</span><p>Chưa có ca</p></div>`}</div>`).join('')}</div><div class="card pad" style="margin-top:18px"><div class="card-head"><h3>Quy tắc bàn giao thú cưng</h3></div><div class="grid cols-3"><div class="note">Khách nhận trễ: tiếp tục chăm sóc, <b>không thu phí lưu chuồng</b>.</div><div class="note">Nếu có dùng thức ăn trong lúc chờ, ghi lại và tính riêng chi phí thực tế.</div><div class="note">Mọi dịch vụ đều đã phải thanh toán trước khi thợ Spa bắt đầu thực hiện.</div></div></div>`; }
+function isExpired(p) { return !!(p.expiry && p.expiry < iso()); }
+function availableProducts() { return db.products.filter(p => p.stock > 0 && !isExpired(p)); }
+function vipRate(c) { return c?.tier === 'Kim cương' ? 5 : c?.tier === 'Vàng' ? 4 : c?.tier === 'Bạc' ? 3 : 0; }
+function cartSubtotal() { return ui.posItems.reduce((a, i) => a + i.price * i.qty, 0); }
+function validPromo(p) { return p.enabled && p.start <= iso() && p.end >= iso(); }
+function cartPromo() { return db.promos.find(p => p.id === ui.promo && validPromo(p)); }
+function posMath() { let customer = cu(ui.posCustomer), sub = cartSubtotal(), promo = cartPromo(), promoEligible = promo ? ui.posItems.filter(i => i.type === 'spa' ? promo.target === 'Tất cả' || promo.target === 'Dịch vụ Spa' : promo.target === 'Tất cả' || pr(i.id)?.cat === promo.target).reduce((a, i) => a + i.price * i.qty, 0) : 0; let promoDiscount = promo ? promo.type === 'percent' ? Math.round(promoEligible * promo.value / 100) : Math.min(promoEligible, promo.value) : 0; let vipDiscount = promo ? 0 : Math.round(sub * vipRate(customer) / 100); let maxPoints = Math.max(0, Math.min(Number(customer.points) || 0, Math.floor((sub - vipDiscount - promoDiscount) / 1000))); let redeem = promo ? 0 : Math.min(maxPoints, Math.max(0, Number(ui.points) || 0)); let due = Math.max(0, sub - promoDiscount - vipDiscount - redeem * 1000); let earn = promo || redeem ? 0 : Math.floor(due / 50000); return { customer, sub, promo, promoDiscount, vipDiscount, redeem, due, earn, maxPoints }; }
+// [09] BÁN HÀNG VÀ THANH TOÁN
+function viewPOS() { let cat = ui.category, products = availableProducts().filter(p => (cat === 'Tất cả' || p.cat === cat) && (!ui.search || [p.name, p.barcode].some(x => x.toLowerCase().includes(ui.search.toLowerCase())))), m = posMath(); return `<div class="split" style="grid-template-columns:minmax(0,1.35fr) minmax(340px,.9fr)"><div class="card pad"><div class="card-head"><div><h3>▣ Danh mục sản phẩm & dịch vụ</h3><small>Chọn nhanh mặt hàng hoặc nhập mã vạch</small></div></div><div class="searchrow"><input id="posSearch" class="inp" placeholder="⌕ Nhập mã vạch, tên sản phẩm..." value="${esc(ui.search)}"><button class="btn soft sm" data-action="posFind">Tìm</button><button class="btn ghost sm" data-action="addService">+ Dịch vụ Spa</button></div><div class="pill-tabs" style="margin-bottom:17px">${['Tất cả', 'Thức ăn cho mèo', 'Phụ kiện', 'Đồ chơi', 'Vệ sinh'].map(t => `<button class="tab ${t === cat ? 'sel' : ''}" data-action="category" data-val="${t}">${t}</button>`).join('')}</div><div class="product-grid">${products.map(p => `<button class="product" data-action="addCart" data-id="${p.id}"><span class="prod-emoji">${p.emoji || '📦'}</span><strong>${esc(p.name)}</strong><small>Tồn: ${p.stock} · HSD: ${p.expiry ? niceDate(p.expiry) : 'Không áp dụng'}</small><div class="row between"><span class="price">${vn(p.price)}</span><span style="font-size:20px;color:#397ce7">＋</span></div></button>`).join('') || empty('Không tìm thấy mặt hàng đang bán')}</div><div class="note" style="margin-top:15px">Hàng hết hạn, hết tồn hoặc chưa có trong danh mục sẽ không thể đưa vào giỏ. Quét mã vạch được mô phỏng qua ô tìm kiếm.</div></div><div class="card pad"><div class="card-head"><div><h3>🛒 Hóa đơn hiện tại</h3><small>${ui.posItems.reduce((a, i) => a + i.qty, 0)} sản phẩm / dịch vụ</small></div><button class="btn danger sm" data-action="clearCart">Xóa giỏ</button></div><div class="field"><div class="row between quick-field-head"><label>Khách hàng / Thành viên</label><button type="button" class="btn soft xs quick-add" data-action="newCustomer" data-quick="customer" title="Tạo khách hàng ngay tại đây">＋ Thêm khách mới</button></div><select class="select" id="posCustomer"><option value="">Khách lẻ — không tích điểm</option>${options(db.customers, 'id', c => c.name + ' · ' + c.phone, ui.posCustomer, '')}</select></div><div class="row between" style="margin:9px 0 15px"><span class="badge blue">${esc(m.customer?.tier || 'Không có hạng VIP')} ${m.customer?.tier ? '-' + vipRate(m.customer) + '%' : ''}</span><span class="muted-sm">🐾 ${m.customer?.points || 0} điểm (= ${vn((m.customer?.points || 0) * 1000)})</span></div><div style="max-height:300px;overflow:auto">${ui.posItems.length ? ui.posItems.map((i, idx) => `<div class="basket-item"><div class="row between"><div style="flex:1"><b style="font-size:12px;color:#35516e">${esc(i.name)}</b><div class="muted-sm">${vn(i.price)} / ${i.type === 'spa' ? 'lượt' : 'sản phẩm'}</div></div><div class="qty"><button data-action="cartMinus" data-idx="${idx}">−</button><b>${i.qty}</b><button data-action="cartPlus" data-idx="${idx}">+</button><button data-action="cartDel" data-idx="${idx}" style="color:#e16b79">×</button></div></div></div>`).join('') : empty('Giỏ hàng đang trống', 'Nhấn dấu ＋ ở sản phẩm để thêm vào hóa đơn')}</div><div class="divider"></div><div class="formgrid"><div class="field"><label>Khuyến mãi (tối đa 1)</label><select class="select" id="posPromo"><option value="none">Không áp dụng</option>${db.promos.filter(validPromo).map(p => `<option value="${p.id}" ${ui.promo === p.id ? 'selected' : ''}>${esc(p.name)}</option>`).join('')}</select></div><div class="field"><label>Điểm sử dụng</label><input class="inp" id="posPoints" type="number" min="0" max="${m.maxPoints}" value="${m.redeem}" ${m.promo ? 'disabled' : ''}><span class="hint">${m.promo ? 'Không dùng chung với khuyến mãi' : 'Tối đa ' + m.maxPoints + ' điểm'}</span></div><div class="field"><label>Nguồn đơn hàng</label><select class="select" id="orderSource">${['Tại quầy', 'Shopee', 'TikTok'].map(v => `<option ${v === ui.orderSource ? 'selected' : ''}>${v}</option>`).join('')}</select></div><div class="field"><label>Phương thức thanh toán</label><select class="select" id="payMethod">${['Tiền mặt', 'Chuyển khoản', 'Ví điện tử'].map(v => `<option ${v === ui.payMethod ? 'selected' : ''}>${v}</option>`).join('')}</select></div></div>${ui.payMethod !== 'Tiền mặt' ? `<div class="note" style="margin:12px 0">▦ Thanh toán chuyển khoản/QR tĩnh: thu ngân xác nhận sau khi đối chiếu thủ công. Prototype không tích hợp cổng thanh toán.</div>` : ''}<div class="divider"></div><div class="receipt-line"><span>Tạm tính</span><b>${vn(m.sub)}</b></div><div class="receipt-line"><span>Ưu đãi thành viên</span><b>− ${vn(m.vipDiscount)}</b></div><div class="receipt-line"><span>Khuyến mãi</span><b>− ${vn(m.promoDiscount)}</b></div><div class="receipt-line"><span>Đổi điểm (${m.redeem}🐾)</span><b>− ${vn(m.redeem * 1000)}</b></div><div class="receipt-line total"><span>Cần thanh toán</span><b>${vn(m.due)}</b></div><div class="row between" style="margin:10px 0 17px"><span class="muted-sm">Điểm cộng sau hóa đơn</span><span class="badge ${m.earn ? 'green' : 'gray'}">+ ${m.earn} điểm</span></div><button class="btn wide" data-action="checkout" ${!ui.posItems.length ? 'disabled' : ''}>✓ Xác nhận đã thu 100% & in hóa đơn</button><p class="muted-sm" style="text-align:center">Giao dịch thành công sẽ tự động trừ tồn kho và ghi nhận doanh thu ca.</p></div></div>`; }
+// [10] HÓA ĐƠN / GIAO DỊCH
+function viewInvoices() { let list = db.invoices.filter(i => (i.id + ' ' + cu(i.customer).name + ' ' + cu(i.customer).phone).toLowerCase().includes(ui.orderQuery.toLowerCase())).slice().reverse(); return `<div class="card pad"><div class="card-head"><div><h3>Danh sách hóa đơn</h3><small>Chỉ hóa đơn thanh toán thành công mới trừ tồn kho / ghi doanh thu</small></div><button class="btn ghost sm" data-action="exportInvoices">⇩ Xuất CSV</button></div><div class="searchrow"><input class="inp" id="invoiceSearch" placeholder="Tìm theo mã hóa đơn, số điện thoại, khách hàng..." value="${esc(ui.orderQuery)}"><button class="btn soft sm" data-action="searchInvoice">⌕ Tìm</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Mã hóa đơn</th><th>Thời gian</th><th>Khách hàng</th><th>Kênh</th><th>Thanh toán</th><th>Tổng tiền</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${list.map(i => `<tr><td><b>${esc(i.id)}</b></td><td>${new Date(i.at).toLocaleString('vi-VN')}</td><td>${esc(cu(i.customer).name)}</td><td>${esc(i.source)}</td><td>${esc(i.method)}</td><td><b>${vn(i.total)}</b></td><td>${badge(i.status)}</td><td><button class="btn soft xs" data-action="invoiceDetail" data-id="${i.id}">Chi tiết</button></td></tr>`).join('') || `<tr><td colspan="8">${empty('Chưa có hóa đơn', 'Tạo hóa đơn thử tại Bán hàng POS')}</td></tr>`}</tbody></table></div></div>`; }
+// [11] ĐỔI TRẢ
+function viewReturns() { let inv = db.invoices.find(x => x.id === ui.returnInvoice), items = inv?.items.filter(i => i.type === 'product') || [], item = items.find(i => i.id === ui.returnItem) || items[0], alts = db.products.filter(p => p.returnable && p.stock > 0 && !isExpired(p)); return `<div class="split"><div class="card pad"><div class="card-head"><div><h3>⇄ Xử lý yêu cầu đổi / trả</h3><small>Điều kiện kiểm tra trước khi tạo phiếu đổi hàng</small></div></div><div class="note warn" style="margin-bottom:18px">Quy định nguồn: không đổi tã/bỉm, vệ sinh pet, thức ăn, thuốc, sản phẩm hỗ trợ chuồng; tối đa <b>1 lần</b>; liên hệ <b>sau 12:00</b>; hàng mới phải <b>bằng giá hoặc cao hơn</b>. Hóa đơn mẫu ghi mốc <b>24 giờ</b> — prototype kiểm tra thêm mốc này.</div><form id="returnForm" class="formgrid"><div class="field full"><label>Mã hóa đơn cần tra cứu *</label><div class="row"><input class="inp" id="returnInvoice" placeholder="VD: HD-..." value="${esc(ui.returnInvoice)}"><button type="button" class="btn soft" data-action="findReturn">Tra cứu</button></div></div>${inv ? `<div class="field full"><div class="note good">Hóa đơn <b>${esc(inv.id)}</b> • ${esc(cu(inv.customer).name)} • ${new Date(inv.at).toLocaleString('vi-VN')} • ${vn(inv.total)}</div></div><div class="field full"><label>Sản phẩm trên hóa đơn *</label><select class="select" id="returnItem">${items.map(i => `<option value="${esc(i.id)}" ${item?.id === i.id ? 'selected' : ''}>${esc(i.name)} · ${vn(i.price)} · SL ${i.qty}</option>`).join('')}</select></div><div class="field full"><label>Kiểm tra sản phẩm thực tế</label><div class="grid cols-2">${[['clean', 'Sạch, không dính lông/mùi hôi'], ['unused', 'Chưa qua sử dụng'], ['receipt', 'Có hóa đơn mua hàng'], ['once', 'Khách xác nhận sản phẩm còn nguyên trạng']].map(([key, text]) => `<label class="choice"><input type="checkbox" name="${key}" required><span>${text}</span></label>`).join('')}</div></div><div class="field full"><label>Hình thức xử lý</label><div class="row"><label class="choice"><input type="radio" name="returnType" value="exchange" ${ui.returnType === 'exchange' ? 'checked' : ''}> Đổi sản phẩm</label><label class="choice"><input type="radio" name="returnType" value="refund" ${ui.returnType === 'refund' ? 'checked' : ''}> Trả / hoàn tiền (quản lý)</label></div></div><div class="field full" id="newProductWrap"><label>Sản phẩm thay thế (đổi ngang giá hoặc bù chênh lệch)</label><select class="select" name="newProduct"><option value="">Chọn sản phẩm mới...</option>${options(alts, 'id', p => p.name + ' · ' + vn(p.price), ui.returnNew, '')}</select></div><div class="field full"><label>Ghi chú xử lý</label><textarea class="textarea" name="reason" rows="2" placeholder="Tình trạng nhận lại và lý do đổi/trả..."></textarea></div><div class="field full"><button class="btn wide" type="submit">✓ Kiểm tra điều kiện & hoàn tất xử lý</button></div>` : `<div class="field full">${empty('Nhập mã hóa đơn để bắt đầu', 'Bạn cần một hóa đơn POS đã thanh toán có sản phẩm hợp lệ')}</div>`}</form></div><div class="card pad"><div class="card-head"><h3>Lịch sử đổi trả</h3></div>${db.returns.length ? db.returns.slice().reverse().map(r => `<div class="listline"><span class="peticon">⇄</span><div style="flex:1"><b>${esc(r.invoice)}</b><div class="muted-sm">${esc(r.original)} → ${esc(r.replacement || 'Trả hàng')}<br>${new Date(r.at).toLocaleString('vi-VN')}</div></div>${badge(r.status === 'refund' ? 'draft' : 'done', r.status === 'refund' ? 'Đợi xử lý hoàn tiền' : r.status === 'refunded' ? 'Đã hoàn tiền' : '+ ' + vn(r.extra))}${isManager() && r.status === 'refund' ? `<button class="btn green xs" data-action="approveRefund" data-id="${r.id}">Duyệt hoàn</button>` : ''}</div>`).join('') : empty('Chưa có phiếu đổi trả')}<div class="divider"></div><h3 style="color:#2a507e;font-size:14px">Trường hợp không đủ điều kiện</h3><p class="muted" style="line-height:1.8;font-size:12px">Hệ thống trả thông báo chính xác cho từng lý do: sản phẩm bị hạn chế, quá mốc kiểm tra, đã đổi 1 lần, liên hệ trước 12 giờ, sản phẩm không đạt tình trạng sạch và chưa dùng, hoặc hàng thay thế có giá thấp hơn.</p></div></div>`; }
+// [12] KHÁCH HÀNG VÀ THẺ THÀNH VIÊN
+function viewCustomers() { let list = db.customers.filter(c => (c.name + ' ' + c.phone).toLowerCase().includes(ui.customerQuery.toLowerCase())); return `<div class="grid cols-4" style="margin-bottom:18px">${[['Thành viên', db.customers.length, 'tone-blue', '👥'], ['Hạng Bạc', db.customers.filter(x => x.tier === 'Bạc').length, 'tone-teal', '🥈'], ['Hạng Vàng', db.customers.filter(x => x.tier === 'Vàng').length, 'tone-orange', '🥇'], ['Kim cương', db.customers.filter(x => x.tier === 'Kim cương').length, 'tone-violet', '💎']].map(m => `<div class="card metric" style="padding:17px"><div class="row"><div class="m-icon ${m[2]}" style="margin:0">${m[3]}</div><div><b>${m[1]}</b><div class="label" style="margin:0">${m[0]}</div></div></div></div>`).join('')}</div><div class="card pad"><div class="card-head"><div><h3>Danh sách khách hàng thân thiết</h3><small>1 điểm / 50.000đ · Quy đổi 1 điểm = 1.000đ</small></div><button class="btn" data-action="newCustomer">＋ Thêm khách hàng</button></div><div class="searchrow"><input class="inp" id="customerSearch" value="${esc(ui.customerQuery)}" placeholder="Tìm theo họ tên hoặc số điện thoại"><button class="btn soft sm" data-action="findCustomer">⌕ Tìm</button><button class="btn ghost sm" data-action="exportCustomers">⇩ Xuất CSV</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Khách hàng</th><th>SĐT</th><th>Thú cưng</th><th>Cấp độ</th><th>Điểm hiện có</th><th>Tổng chi tiêu ghi nhận</th><th>Thao tác</th></tr></thead><tbody>${list.map(c => `<tr><td><div class="row"><span class="avatar">${esc(c.name.split(' ').pop().slice(0, 2).toUpperCase())}</span><b>${esc(c.name)}</b></div></td><td>${esc(c.phone)}</td><td>${db.pets.filter(p => p.owner === c.id).map(p => p.name).join(', ') || '—'}</td><td><span class="badge ${c.tier === 'Kim cương' ? 'purple' : c.tier === 'Vàng' ? 'yellow' : 'blue'}">${esc(c.tier)}</span></td><td><b>${fmt(c.points)} 🐾</b></td><td>${vn(c.spent)}</td><td><button class="btn soft xs" data-action="editCustomer" data-id="${c.id}">Hồ sơ / Sửa</button></td></tr>`).join('') || `<tr><td colspan="7">${empty('Không có khách hàng phù hợp')}</td></tr>`}</tbody></table></div><div class="note" style="margin-top:16px">Các mức giảm theo hạng: Bạc 3%, Vàng 4%, Kim cương 5%. Báo cáo không chỉ rõ ngưỡng tổng chi tiêu từng hạng, nên prototype cho quản lý gán cấp hạng thủ công; không tự tạo ngưỡng giả.</div></div>`; }
+// [13] HỒ SƠ THÚ CƯNG
+function viewPets() { let list = db.pets.filter(p => (p.name + ' ' + p.breed + ' ' + cu(p.owner).name).toLowerCase().includes(ui.petQuery.toLowerCase())); return `<div class="card pad"><div class="card-head"><div><h3>Hồ sơ thú cưng</h3><small>Quản lý thông tin thú cưng theo chủ sở hữu</small></div><button class="btn" data-action="newPet">＋ Thêm thú cưng</button></div><div class="searchrow"><input class="inp" id="petSearch" placeholder="Tìm tên pet, giống, tên chủ..." value="${esc(ui.petQuery)}"><button class="btn soft sm" data-action="findPet">⌕ Tìm</button></div><div class="grid cols-3">${list.map(p => `<div class="card pad" style="box-shadow:none;border-radius:13px"><div class="row between"><div class="peticon ${p.species === 'Mèo' ? 'cat' : ''}" style="width:60px;height:60px;font-size:34px">${p.species === 'Mèo' ? '🐈' : '🐕'}</div><span class="badge blue">${esc(p.id)}</span></div><h3 style="margin:16px 0 5px;color:#264c80">${esc(p.name)}</h3><div class="muted-sm">${esc(p.breed)} · ${esc(p.species)}</div><div class="divider"></div><div class="receipt-line"><span>Chủ nuôi</span><b>${esc(cu(p.owner).name)}</b></div><div class="receipt-line"><span>Cân nặng gần nhất</span><b>${p.weight} kg</b></div><div class="receipt-line"><span>Số lần Spa</span><b>${db.jobs.filter(j => j.pet === p.id).length}</b></div><p class="muted-sm">Ghi chú: ${esc(p.note || 'Không có')}</p><button class="btn soft sm wide" data-action="editPet" data-id="${p.id}">✎ Cập nhật hồ sơ</button></div>`).join('') || empty('Không có hồ sơ phù hợp')}</div></div>`; }
+function stockStatus(p) { if (isExpired(p))
+    return `<span class="badge red">Hết hạn</span>`; if (p.expiry && p.expiry <= addDays(iso(), 30))
+    return `<span class="badge yellow">Sắp hết hạn</span>`; if (p.stock <= 5)
+    return `<span class="badge red">Sắp hết hàng</span>`; return `<span class="badge green">Bình thường</span>`; }
+// [14] KHO / TỒN / HẠN SỬ DỤNG
+function viewInventory() { let list = db.products.filter(p => (p.name + ' ' + p.id + ' ' + p.barcode).toLowerCase().includes(ui.inventoryQuery.toLowerCase())); return `<div class="grid cols-4" style="margin-bottom:17px">${[['Mặt hàng', db.products.length, 'tone-blue', '📦'], ['Sắp hết', db.products.filter(x => x.stock <= 5).length, 'tone-orange', '⚠'], ['Cận hạn ≤30 ngày', db.products.filter(p => p.expiry && !isExpired(p) && p.expiry <= addDays(iso(), 30)).length, 'tone-violet', '⌛'], ['Hết hạn', db.products.filter(isExpired).length, 'tone-red', '✕']].map(m => `<div class="card metric" style="padding:17px"><div class="row"><span class="m-icon ${m[2]}" style="margin:0">${m[3]}</span><div><b>${m[1]}</b><div class="label" style="margin:0">${m[0]}</div></div></div></div>`).join('')}</div><div class="card pad"><div class="card-head"><div><h3>Kho hàng, hạn sử dụng & cảnh báo</h3><small>Chỉ quản lý có quyền nhập và sửa sản phẩm</small></div><div class="actions"><button class="btn ghost sm" data-action="exportStock">⇩ Xuất kho CSV</button><button class="btn soft sm" data-action="newProduct">＋ Mặt hàng mới</button><button class="btn" data-action="importStock">＋ Nhập hàng</button></div></div><div class="searchrow"><input class="inp" id="stockSearch" value="${esc(ui.inventoryQuery)}" placeholder="Tìm sản phẩm, mã kho, mã vạch..."><button class="btn soft sm" data-action="findStock">⌕ Tìm</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Mã SP</th><th>Sản phẩm</th><th>Danh mục</th><th>Đơn giá</th><th>Tồn kho</th><th>HSD</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${list.map(p => `<tr><td><b>${esc(p.id)}</b><div class="muted-sm">${esc(p.barcode)}</div></td><td><span style="font-size:19px">${p.emoji || '📦'}</span> ${esc(p.name)}</td><td>${esc(p.cat)}</td><td>${vn(p.price)}</td><td><b>${p.stock}</b></td><td>${p.expiry ? niceDate(p.expiry) : '—'}</td><td>${stockStatus(p)}</td><td><button class="btn soft xs" data-action="editProduct" data-id="${p.id}">Sửa</button></td></tr>`).join('')}</tbody></table></div><div class="note warn" style="margin-top:16px">Khi bán hàng thành công, tồn kho tự giảm. Không cho phép bán quá tồn hoặc bán hàng hết hạn. Ngưỡng sắp hết mặc định <b>≤ 5</b> và cận hạn <b>30 ngày</b> là giá trị minh họa để dựng giao diện, cần quản lý xác nhận trước khi triển khai thật.</div></div>`; }
+// [15] DANH MỤC VÀ BẢNG GIÁ
+function viewCatalog() { return `<div class="grid"><div class="card pad"><div class="card-head"><div><h3>✂ Bảng giá dịch vụ Spa</h3><small>Giá phụ thuộc loài, cân nặng và loại dịch vụ</small></div><button class="btn" data-action="newService">＋ Tạo dịch vụ</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Mã DV</th><th>Tên dịch vụ</th><th>Loài</th><th>Giá cơ sở minh họa (≤5 kg)</th><th>Thời gian</th><th>Cách tính</th><th></th></tr></thead><tbody>${db.services.map(s => `<tr><td><b>${s.id}</b></td><td>${esc(s.name)}</td><td>${esc(s.species)}</td><td><b>${vn(s.base)}</b></td><td>${s.duration} phút</td><td>+60.000đ (5–10kg), +120.000đ (>10kg)</td><td><button class="btn soft xs" data-action="editService" data-id="${s.id}">Sửa</button></td></tr>`).join('')}</tbody></table></div><div class="note" style="margin-top:12px">Bảng giá trong bản mẫu dùng số ví dụ cho từng dịch vụ/cân nặng; tài liệu không cung cấp bảng giá đầy đủ, nên không được coi đây là biểu giá chính thức.</div></div><div class="card pad"><div class="card-head"><h3>🛍 Danh mục sản phẩm</h3><button class="btn soft sm" data-action="newProduct">＋ Sản phẩm</button></div><div class="grid cols-4">${db.products.map(p => `<div class="product" style="cursor:default"><span class="prod-emoji">${p.emoji}</span><strong>${esc(p.name)}</strong><div class="muted-sm">${esc(p.cat)} · ${p.stock} sản phẩm</div><div class="price">${vn(p.price)}</div><button class="btn ghost xs" style="margin-top:11px;width:100%" data-action="editProduct" data-id="${p.id}">✎ Chỉnh sửa sản phẩm</button></div>`).join('')}</div></div></div>`; }
+// [16] KHUYẾN MÃI
+function viewPromos() { return `<div class="card pad"><div class="card-head"><div><h3>Danh sách chương trình khuyến mãi</h3><small>Hệ thống kiểm tra hiệu lực, đối tượng và tránh cộng dồn ưu đãi</small></div><button class="btn" data-action="newPromo">＋ Tạo khuyến mãi</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Chương trình</th><th>Áp dụng cho</th><th>Giá trị</th><th>Thời gian</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody>${db.promos.map(p => `<tr><td><b>${esc(p.name)}</b><div class="muted-sm">${esc(p.id)}</div></td><td>${esc(p.target)}</td><td><b>${p.type === 'percent' ? p.value + '%' : vn(p.value)}</b></td><td>${niceDate(p.start)} → ${niceDate(p.end)}</td><td>${p.enabled ? (validPromo(p) ? badge('paid', 'Đang áp dụng') : badge('draft', 'Chưa / hết hiệu lực')) : badge('cancel', 'Đã tắt')}</td><td><div class="row"><button class="btn soft xs" data-action="editPromo" data-id="${p.id}">Sửa</button><button class="btn ghost xs" data-action="togglePromo" data-id="${p.id}">${p.enabled ? 'Tắt' : 'Bật'}</button></div></td></tr>`).join('') || `<tr><td colspan="6">${empty('Chưa có khuyến mãi')}</td></tr>`}</tbody></table></div><div class="note warn" style="margin-top:18px">Mỗi hóa đơn áp dụng tối đa 1 khuyến mãi. Đơn có khuyến mãi không tích điểm và không dùng đồng thời điểm trên cùng bill; trường hợp kết hợp phải tách bill theo quy định tài liệu.</div></div>`; }
+function last7() { let arr = []; for (let i = 6; i >= 0; i--) {
+    let d = addDays(iso(), -i), sum = db.invoices.filter(x => x.at.slice(0, 10) === d && x.status === 'paid').reduce((a, x) => a + x.total, 0);
+    arr.push({ date: d, sum });
+} return arr; }
+// [17] BÁO CÁO / THỐNG KÊ
+function viewReports() { let inv = db.invoices.filter(x => x.status === 'paid'), rev = inv.reduce((a, i) => a + i.total, 0), spaRev = inv.reduce((a, i) => a + i.items.filter(it => it.type === 'spa').reduce((b, it) => b + it.price * it.qty, 0), 0), cash = inv.filter(i => i.method === 'Tiền mặt').reduce((a, i) => a + i.total, 0), rows = last7(), max = Math.max(...rows.map(d => d.sum), 1000); return `<div class="grid cols-4" style="margin-bottom:18px">${[['Tổng doanh thu', vn(rev), 'tone-blue', '↗'], ['Doanh số dịch vụ Spa', vn(spaRev), 'tone-teal', '✂'], ['Tiền mặt đã thu', vn(cash), 'tone-orange', '💵'], ['Tổng đơn hàng', inv.length, 'tone-violet', '▤']].map(m => `<div class="card metric" style="padding:18px"><div class="m-icon ${m[2]}">${m[3]}</div><b style="font-size:23px">${m[1]}</b><div class="label">${m[0]}</div></div>`).join('')}</div><div class="split"><div class="card pad"><div class="card-head"><div><h3>Doanh thu trong 7 ngày gần đây</h3><small>Số tiền từ các hóa đơn đã thanh toán</small></div><button class="btn ghost sm" data-action="exportInvoices">⇩ Xuất báo cáo</button></div><div class="bar-chart">${rows.map(r => `<div class="bar-col" title="${niceDate(r.date)}: ${vn(r.sum)}"><div class="muted-sm" style="font-size:10px">${r.sum ? fmt(r.sum / 1000) + 'k' : ''}</div><div class="bar" style="height:${Math.max(3, r.sum / max * 120)}px"></div><label>${r.date.slice(8)}/${r.date.slice(5, 7)}</label></div>`).join('')}</div><div class="note" style="margin-top:25px">Đây là báo cáo theo các giao dịch bạn thao tác trong prototype. Không bao gồm dữ liệu tài chính thực tế của cửa hàng.</div></div><div class="card pad"><div class="card-head"><h3>Phân loại doanh thu</h3></div>${['Tại quầy', 'Shopee', 'TikTok'].map(src => { let sum = inv.filter(i => i.source === src).reduce((a, i) => a + i.total, 0); return `<div style="padding:13px 0"><div class="row between" style="margin-bottom:10px"><b>${src}</b><b>${vn(sum)}</b></div><div class="colorbar"><span style="width:${rev ? sum / rev * 100 : 0}%"></span></div></div>`; }).join('')}<div class="divider"></div><div class="receipt-line"><span>Tổng doanh thu hàng hóa (chưa trừ giảm giá riêng)</span><b>${vn(Math.max(0, inv.reduce((a, i) => a + i.items.filter(it => it.type === 'product').reduce((b, it) => b + it.price * it.qty, 0), 0)))}</b></div><div class="receipt-line"><span>Khuyến mãi/ưu đãi đã áp dụng</span><b>${vn(inv.reduce((a, i) => a + (i.discount || 0), 0))}</b></div><div class="receipt-line"><span>Hóa đơn trong hệ thống</span><b>${inv.length}</b></div></div></div><div class="card pad" style="margin-top:18px"><div class="card-head"><h3>Thống kê ca làm việc và lịch sử chốt ca</h3><button class="btn ghost sm" data-action="exportShifts">⇩ Xuất đối soát</button></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Mã ca</th><th>Thu ngân</th><th>Quỹ đầu ca</th><th>Tiền mặt thực đếm</th><th>Chênh lệch</th><th>Trạng thái</th></tr></thead><tbody>${db.shifts.slice().reverse().map(s => `<tr><td><b>${esc(s.id)}</b><div class="muted-sm">${niceDate(s.date)}</div></td><td>${esc(s.staff)}</td><td>${vn(s.opening)}</td><td>${s.counted !== undefined ? vn(s.counted) : '—'}</td><td>${s.diff !== undefined ? vn(s.diff) : '—'}</td><td>${badge(s.status === 'open' ? 'received' : s.status)}</td></tr>`).join('') || `<tr><td colspan="6">Chưa có phiếu kết ca.</td></tr>`}</tbody></table></div></div>`; }
+const usecases = [['001', 'Quản lý thú cưng', 'Thêm/cập nhật → kiểm tra chủ nuôi → lưu hồ sơ', 'Lễ tân'], ['002', 'Đổi trả hàng', 'Tra cứu bill → kiểm điều kiện → đổi/hoàn → tồn kho', 'Lễ tân'], ['003', 'Quản lý lịch Spa', 'Nhập thông tin → tránh trùng giờ/thợ → xác nhận', 'Lễ tân'], ['004', 'Tiếp nhận pet', 'Khách đến → cân/kiểm lông → báo giá → POS 100%', 'Lễ tân'], ['005', 'Quản lý khách hàng', 'Tra cứu SĐT → thêm/sửa → lịch sử & VIP', 'Lễ tân'], ['006', 'Mở ca', 'Kiểm checklist → kê tiền quỹ → kích hoạt POS', 'Lễ tân'], ['007', 'Chốt ca', 'Đếm quỹ → đối soát → gửi quản lý duyệt', 'Lễ tân & quản lý'], ['008', 'Thanh toán POS', 'Chọn hàng → đủ tồn → ưu đãi → thu tiền → in bill', 'Lễ tân'], ['009', 'Quản lý khuyến mãi', 'Tạo điều kiện → kiểm hiệu lực → 1 KM/bill', 'Quản lý'], ['010', 'Thống kê', 'Tổng hợp doanh thu ngày/ca/kênh → xuất CSV', 'Quản lý'], ['011', 'Tra cứu', 'Tìm khách/pet/sản phẩm/lịch hẹn/hóa đơn', 'Tất cả'], ['012', 'Cập nhật tiến độ Spa', 'Chờ → đang thực hiện → hoàn thành', 'Thợ Spa'], ['013', 'Quản lý dịch vụ Spa', 'Dịch vụ → loài/cân nặng → bảng giá', 'Quản lý'], ['014', 'Quản lý sản phẩm', 'Tạo/sửa mã hàng → bảng giá → danh mục', 'Quản lý'], ['015', 'Đăng nhập / phân quyền', 'Chọn tài khoản → xác thực → truy cập theo vai trò', 'Tất cả'], ['016', 'Quản lý kho', 'Nhập hàng → trừ tồn → cận hạn/hết hạn', 'Quản lý'], ['017', 'Xem lịch phân công', 'Xem đúng ca thuộc thợ hiện tại', 'Thợ Spa'], ['018', 'Ghi nhận vật tư Spa', 'Đang làm → cập nhật vật tư tiêu hao', 'Thợ Spa'], ['019', 'Tích điểm VIP', '50.000đ = 1 điểm; 1 điểm = 1.000đ', 'Lễ tân']];
+// [18] UX FLOW / FIGMA HANDOFF
+function viewFlow() { return `<div class="hero" style="margin-bottom:17px"><div><div class="eyebrow" style="color:#cde4ff">DESIGN HANDOFF / FIGMA</div><h2>19 use case · 3 vai trò · 1 hệ thống</h2><p>Đăng nhập → Mở ca → Đặt lịch / Tiếp nhận → Thu tiền Spa → Thợ thực hiện → Bàn giao → POS phụ kiện / Đổi trả → Chốt ca → Quản lý duyệt.</p></div><div class="hero-art">🧩</div></div><div class="card pad"><div class="card-head"><h3>01. Sơ đồ điều hướng & luồng chính</h3><span class="badge blue">Nên tạo Frames riêng trong Figma</span></div><div class="steps"><span class="step on">01 · Đăng nhập</span><span class="step on">02 · Dashboard</span><span class="step on">03 · Mở ca</span><span class="step on">04 · Đặt lịch</span><span class="step on">05 · Tiếp nhận</span><span class="step on">06 · Thanh toán</span><span class="step on">07 · Spa</span><span class="step on">08 · Chốt ca</span></div><div class="divider"></div><div class="flow-grid">${[['A. Đặt lịch Spa', 'Thông tin khách + pet → kiểm trùng lịch theo thợ và khoảng giờ → lưu Chờ tiếp nhận → nếu trùng, báo lỗi và gợi ý đổi giờ.'], ['B. Tiếp nhận / trả trước', 'Kiểm cân nặng & lông/da → xác nhận bảng giá → tạo giỏ dịch vụ → thu 100% → ca chuyển sang Chờ thực hiện. Nếu chưa thu đủ: không bắt đầu.'], ['C. Spa & bàn giao', 'Thợ xem lịch phân công → Bắt đầu → ghi vật tư → Hoàn thành → Bàn giao. Nhận trễ không có phí lưu chuồng, phát sinh thức ăn ghi riêng.'], ['D. POS & thành viên', 'Quét mã/chọn hàng → kiểm tồn/HSD → VIP hoặc khuyến mãi → tùy chọn sử dụng điểm (không đi kèm KM) → thanh toán → trừ kho/tích điểm/in bill.'], ['E. Đổi trả', 'Tìm hóa đơn → kiểm nhóm hàng, ≤1 lần, sau 12h, tình trạng sạch/chưa dùng, mốc 24h hóa đơn → đổi giá ≥ cũ hoặc ghi yêu cầu hoàn theo quy định quản lý.'], ['F. Chốt & báo cáo', 'Mở ca/checklist → thu ngân đếm thực tế → so với tiền đầu ca + giao dịch → ghi chênh lệch → chuyển phiếu chờ quản lý duyệt → khóa ca & báo cáo.']].map((x, i) => `<div class="flow-card"><h4><span class="idx">0${i + 1}</span>${x[0]}</h4><p>${x[1]}</p></div>`).join('')}</div></div><div class="card pad" style="margin-top:18px"><div class="card-head"><h3>02. Ma trận use case từ báo cáo</h3><span class="badge green">19/19 UseCase được đối chiếu</span></div><div class="tablewrap"><table class="data-table"><thead><tr><th>Mã UC</th><th>Chức năng</th><th>Luồng / trạng thái</th><th>Vai trò</th></tr></thead><tbody>${usecases.map(u => `<tr><td><b>UC${u[0]}</b></td><td>${u[1]}</td><td>${u[2]}</td><td>${u[3]}</td></tr>`).join('')}</tbody></table></div></div><div class="split-equal" style="margin-top:18px"><div class="card pad"><div class="card-head"><h3>03. UI Design System</h3></div><div class="grid cols-4">${[['#245FB5', 'Primary'], ['#153B76', 'Sidebar'], ['#14AD98', 'Success'], ['#F3A33A', 'Warning'], ['#E76370', 'Danger'], ['#F5F8FD', 'Canvas'], ['#202D47', 'Text'], ['#E8EDF5', 'Border']].map(([col, label]) => `<div><div style="height:35px;background:${col};border-radius:9px;border:1px solid #e6ebf3"></div><div class="muted-sm" style="margin-top:7px"><b>${label}</b><br>${col}</div></div>`).join('')}</div><div class="divider"></div><table class="setup-table"><tr><td>Desktop frame</td><td>1440 × 900 hoặc 1600 × 900</td></tr><tr><td>Sidebar</td><td>248 px / desktop cố định</td></tr><tr><td>Topbar</td><td>75 px / sticky</td></tr><tr><td>Grid / gap</td><td>8px system, card gap 18px</td></tr><tr><td>Card / input</td><td>Radius 17px / 10px</td></tr><tr><td>Font</td><td>Inter / Segoe UI fallback</td></tr></table></div><div class="card pad"><div class="card-head"><h3>04. Quy tắc nguồn & các điểm cần xác nhận</h3></div><div class="note warn">⚠ Quy trình đề cập <b>đổi/trả</b> và có nhánh <b>hoàn tiền</b>, nhưng quy định xử lý chỉ nêu rõ điều kiện đổi và không hoàn tiền thừa nếu đổi xuống giá. Prototype giữ yêu cầu hoàn tiền ở trạng thái chờ quản lý kiểm duyệt thay vì mặc nhiên chi tiền.</div><div class="note" style="margin-top:10px">⚠ Vai trò: danh sách tác nhân cho thu ngân được chuẩn bị/chốt ca; phần khảo sát ghi quản lý được xem báo cáo tài chính và quyền kết sổ. Prototype tách bước <b>thu ngân lập phiếu</b> và <b>quản lý phê duyệt</b>.</div><div class="note" style="margin-top:10px">⚠ Báo cáo không đủ dữ liệu để suy ra ngưỡng lên hạng VIP, biểu giá theo cân nặng, hạn cận date và số lượng ngưỡng tồn. Các mức cụ thể trong giao diện được <b>đánh dấu là dữ liệu demo</b>.</div><div class="note good" style="margin-top:10px">✓ Không thêm hệ thống đặt lịch của khách, không tạo cổng thanh toán online, không thiết kế giao hàng hoặc module chấm công/tiền lương (ngoài phạm vi).</div></div></div><div class="card pad" style="margin-top:18px"><div class="card-head"><h3>05. Checklist khi dựng prototype tương tác trong Figma</h3><button class="btn ghost sm" data-action="resetDemo">↻ Khôi phục dữ liệu mẫu</button></div><div class="grid cols-3">${['Default state', 'Validation error', 'Empty state', 'Success toast', 'Loading / disabled', 'Modal xác nhận', 'Không đủ tồn', 'Trùng lịch thợ', 'Chưa thanh toán Spa', 'Hàng hết hạn', 'Không đủ điểm', 'Không đủ điều kiện đổi trả', 'Đối soát lệch tiền', 'Chờ quản lý duyệt', 'Phân quyền người dùng'].map((x, i) => `<label class="choice"><input type="checkbox"><span>${String(i + 1).padStart(2, '0')} · ${x}</span></label>`).join('')}</div></div>`; }
+function openModal(type, id = null) { if (role() === 'spa' && ['newCustomer', 'editCustomer', 'newPet', 'editPet', 'newProduct', 'editProduct', 'importStock'].includes(type)) {
+    toast('Tài khoản thợ Spa chỉ được xem lịch phân công và cập nhật tiến độ.', true);
+    return;
+} ui.modal = { type, id }; renderModal(); }
+// [19] MẪU POPUP / BIỂU MẪU
+function renderModal() {
+    let mount = $('#modal');
+    if (!mount)
+        return;
+    if (!ui.modal) {
+        mount.innerHTML = '';
+        return;
+    }
+    let { type, id } = ui.modal, heading = '', content = '', o = (array, value = '') => options(array, 'id', 'name', value);
+    if (type === 'walkin') {
+        heading = 'Tiếp nhận khách vãng lai';
+        content = `<form id="walkinForm" class="formgrid"><div class="field"><div class="row between quick-field-head"><label>Khách hàng *</label><button type="button" class="btn soft xs quick-add" data-action="newCustomer" data-quick="customer" title="Tạo khách hàng ngay tại đây">＋ Thêm khách mới</button></div><select class="select" id="walkinCustomer" name="customer" required>${options(db.customers, 'id', c => c.name + ' · ' + c.phone, ui.walkinCustomer || db.customers[0]?.id)}</select></div><div class="field"><div class="row between quick-field-head"><label>Thú cưng *</label><button type="button" class="btn soft xs quick-add" data-action="newPet" data-quick="pet" title="Tạo hồ sơ thú cưng ngay tại đây">＋ Thêm thú cưng</button></div><select class="select" id="walkinPet" name="pet" required>${options(db.pets.filter(p=>p.owner === (ui.walkinCustomer || db.customers[0]?.id)), 'id', p => p.name + ' · ' + cu(p.owner).name, ui.walkinPet || '')}</select></div><div class="field"><label>Dịch vụ dự kiến</label><select class="select" name="service">${options(db.services, 'id', 'name', db.services[0]?.id)}</select></div><div class="field"><label>Thợ Spa</label><select class="select" name="staff">${options(db.staff, 'id', 'name', db.staff[0]?.id)}</select></div><div class="field full"><div class="note">Bấm xác nhận để tạo phiếu tiếp nhận trực tiếp. Có thể thêm hồ sơ khách hàng / pet mới trước từ menu bên trái.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Tiếp nhận trực tiếp tại quầy</button></div></form>`;
+    }
+    if (type === 'newCustomer' || type === 'editCustomer') {
+        let c = db.customers.find(c => c.id === id) || { name: '', phone: '', tier: 'Bạc', points: 0, spent: 0 };
+        heading = (id ? 'Cập nhật' : 'Thêm') + ' khách hàng';
+        content = `<form id="customerForm" class="formgrid"><input type="hidden" name="id" value="${esc(id || '')}"><div class="field"><label>Họ và tên *</label><input class="inp" name="name" value="${esc(c.name)}" required></div><div class="field"><label>Điện thoại 10 chữ số *</label><input class="inp" name="phone" inputmode="numeric" pattern="0[0-9]{9}" value="${esc(c.phone)}" required></div><div class="field"><label>Cấp độ thành viên</label><select class="select" name="tier" ${!isManager() ? 'disabled' : ''}>${['Bạc', 'Vàng', 'Kim cương'].map(v => `<option ${v === c.tier ? 'selected' : ''}>${v}</option>`).join('')}</select><span class="hint">Chỉ quản lý thay đổi cấp hạng</span></div><div class="field"><label>Điểm hiện có</label><input class="inp" disabled value="${c.points} điểm = ${vn(c.points * 1000)}"></div><div class="field full"><div class="note">Tổng chi tiêu ghi nhận: <b>${vn(c.spent)}</b>. Điểm chỉ tăng/giảm khi có hóa đơn hợp lệ, không sửa thủ công.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Lưu hồ sơ khách hàng</button></div></form>`;
+    }
+    if (type === 'newPet' || type === 'editPet') {
+        let p = db.pets.find(p => p.id === id) || { name: '', owner: ui.page === 'appointments' ? (document.querySelector('#apptCustomer')?.value || ui.appointmentCustomer) : ui.modal?.type === 'newPet' && ui.quickContext?.parentModal?.type === 'walkin' ? (ui.walkinCustomer || db.customers[0]?.id) : db.customers[0]?.id || '', species: 'Chó', breed: '', weight: 3.5, note: '' };
+        heading = (id ? 'Cập nhật' : 'Thêm') + ' hồ sơ thú cưng';
+        content = `<form id="petForm" class="formgrid"><input type="hidden" name="id" value="${esc(id || '')}"><div class="field"><div class="row between quick-field-head"><label>Chủ nuôi *</label><button type="button" class="btn soft xs quick-add" data-action="newCustomer" data-quick="customer" title="Tạo khách hàng ngay tại đây">＋ Thêm khách mới</button></div><select class="select" name="owner" required>${options(db.customers, 'id', c => c.name + ' · ' + c.phone, p.owner)}</select></div><div class="field"><label>Tên thú cưng *</label><input class="inp" name="name" value="${esc(p.name)}" required></div><div class="field"><label>Loài *</label><select class="select" name="species"><option ${p.species === 'Chó' ? 'selected' : ''}>Chó</option><option ${p.species === 'Mèo' ? 'selected' : ''}>Mèo</option></select></div><div class="field"><label>Giống</label><input class="inp" name="breed" value="${esc(p.breed)}" placeholder="Poodle / Anh lông ngắn"></div><div class="field"><label>Cân nặng (kg) *</label><input class="inp" name="weight" type="number" min="0.1" max="100" step="0.1" value="${p.weight}" required></div><div class="field full"><label>Ghi chú cần lưu ý</label><textarea class="textarea" name="note" rows="2">${esc(p.note)}</textarea></div><div class="field full"><button type="submit" class="btn wide">✓ Lưu hồ sơ thú cưng</button></div></form>`;
+    }
+    if (type === 'newProduct' || type === 'editProduct') {
+        let p = pr(id) || { id: '', barcode: '', name: '', cat: 'Phụ kiện', price: 0, stock: 0, expiry: '', emoji: '📦', returnable: true };
+        heading = id ? 'Chỉnh sửa sản phẩm' : 'Tạo mặt hàng mới';
+        content = `<form id="productForm" class="formgrid"><input type="hidden" name="id" value="${esc(id || '')}"><div class="field"><label>Tên mặt hàng *</label><input class="inp" name="name" value="${esc(p.name)}" required></div><div class="field"><label>Mã vạch *</label><input class="inp" name="barcode" value="${esc(p.barcode)}" required></div><div class="field"><label>Nhóm sản phẩm *</label><select class="select" name="cat">${['Thức ăn cho mèo', 'Thức ăn cho chó', 'Phụ kiện', 'Đồ chơi', 'Vệ sinh', 'Thuốc', 'Hỗ trợ chuồng'].map(v => `<option ${v === p.cat ? 'selected' : ''}>${v}</option>`).join('')}</select></div><div class="field"><label>Đơn giá bán (đ) *</label><input class="inp" type="number" min="0" name="price" value="${p.price}" required></div><div class="field"><label>Tồn kho ban đầu</label><input class="inp" type="number" min="0" name="stock" value="${p.stock}" ${id ? 'disabled' : ''}></div><div class="field"><label>Hạn sử dụng</label><input class="inp" type="date" name="expiry" value="${p.expiry}"></div><div class="field"><label>Biểu tượng minh họa</label><input class="inp" name="emoji" value="${p.emoji}" maxlength="6"></div><div class="field"><label>Hỗ trợ đổi trả?</label><select class="select" name="returnable"><option value="true" ${p.returnable ? 'selected' : ''}>Có (theo điều kiện)</option><option value="false" ${!p.returnable ? 'selected' : ''}>Không</option></select></div><div class="field full"><button class="btn wide" type="submit">✓ ${id ? 'Cập nhật' : 'Tạo'} mặt hàng</button></div></form>`;
+    }
+    if (type === 'importStock') {
+        heading = 'Nhập kho & hạn sử dụng';
+        content = `<form id="stockForm" class="formgrid"><div class="field full"><label>Chọn sản phẩm có sẵn *</label><select class="select" name="id">${options(db.products, 'id', p => p.name + ' · Tồn ' + p.stock, '', '')}</select></div><div class="field"><label>Số lượng nhập thêm *</label><input class="inp" type="number" name="qty" min="1" value="10" required></div><div class="field"><label>HSD trên bao bì</label><input class="inp" type="date" name="expiry" value="${addDays(iso(), 180)}"></div><div class="field full"><label>Ghi chú nhập hàng</label><textarea class="textarea" name="note" rows="2" placeholder="Lô nhập hàng, nhà cung cấp, tình trạng bao bì..."></textarea></div><div class="field full"><div class="note">Bản mô phỏng cập nhật HSD theo sản phẩm; hệ thống thật nên quản lý HSD theo lô để tránh ghi đè các lô cũ.</div></div><div class="field full"><button class="btn wide" type="submit">📦 Xác nhận nhập kho</button></div></form>`;
+    }
+    if (type === 'newService' || type === 'editService') {
+        let s = svc(id);
+        if (!id)
+            s = { name: '', species: 'Tất cả', base: 180000, duration: 90 };
+        heading = id ? 'Chỉnh sửa dịch vụ' : 'Thêm dịch vụ Spa';
+        content = `<form id="serviceForm" class="formgrid"><input type="hidden" name="id" value="${esc(id || '')}"><div class="field full"><label>Tên dịch vụ *</label><input class="inp" name="name" value="${esc(s.name)}" required></div><div class="field"><label>Loài áp dụng</label><select class="select" name="species">${['Tất cả', 'Chó', 'Mèo'].map(v => `<option ${s.species === v ? 'selected' : ''}>${v}</option>`).join('')}</select></div><div class="field"><label>Giá cơ sở demo ≤5kg (đ) *</label><input class="inp" type="number" name="base" min="0" value="${s.base}" required></div><div class="field"><label>Thời lượng dịch vụ (phút) *</label><input class="inp" type="number" name="duration" min="15" step="15" value="${s.duration}" required></div><div class="field full"><div class="note">Quy tắc phụ thu cân nặng demo đang dùng để hiển thị luồng. Cần xác minh biểu giá thực tế từ cửa hàng.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Lưu dịch vụ</button></div></form>`;
+    }
+    if (type === 'newPromo' || type === 'editPromo') {
+        let p = db.promos.find(p => p.id === id) || { name: '', target: 'Tất cả', type: 'percent', value: 10, start: iso(), end: addDays(iso(), 15), enabled: true };
+        heading = id ? 'Chỉnh sửa chương trình' : 'Tạo khuyến mãi';
+        content = `<form id="promoForm" class="formgrid"><input type="hidden" name="id" value="${esc(id || '')}"><div class="field full"><label>Tên chương trình *</label><input class="inp" name="name" value="${esc(p.name)}" required></div><div class="field"><label>Danh mục áp dụng</label><select class="select" name="target">${['Tất cả', 'Dịch vụ Spa', 'Thức ăn cho mèo', 'Thức ăn cho chó', 'Phụ kiện', 'Đồ chơi', 'Vệ sinh'].map(v => `<option ${v === p.target ? 'selected' : ''}>${v}</option>`).join('')}</select></div><div class="field"><label>Kiểu giảm</label><select class="select" name="type"><option value="percent" ${p.type === 'percent' ? 'selected' : ''}>Phần trăm (%)</option><option value="fixed" ${p.type === 'fixed' ? 'selected' : ''}>Số tiền (đ)</option></select></div><div class="field"><label>Giá trị giảm *</label><input class="inp" name="value" type="number" min="1" value="${p.value}" required></div><div class="field"><label>Trạng thái</label><select class="select" name="enabled"><option value="true" ${p.enabled ? 'selected' : ''}>Đang bật</option><option value="false" ${!p.enabled ? 'selected' : ''}>Tắt</option></select></div><div class="field"><label>Ngày bắt đầu *</label><input class="inp" name="start" type="date" value="${p.start}" required></div><div class="field"><label>Ngày kết thúc *</label><input class="inp" name="end" type="date" value="${p.end}" required></div><div class="field full"><button type="submit" class="btn wide">✓ Lưu chương trình</button></div></form>`;
+    }
+    if (type === 'addService') {
+        heading = 'Thêm dịch vụ vào hóa đơn';
+        content = `<form id="addServiceForm" class="formgrid"><div class="field full"><label>Dịch vụ Spa *</label><select class="select" name="service">${options(db.services, 'id', s => s.name + ' · ' + vn(s.base), '', '')}</select></div><div class="field"><label>Loài</label><select class="select" name="species"><option>Chó</option><option>Mèo</option></select></div><div class="field"><label>Cân nặng (kg)</label><input class="inp" type="number" name="weight" min="0.1" step="0.1" value="3.5" required></div><div class="field full"><div class="note warn">Dịch vụ Spa nên tiếp nhận và kiểm tra thực tế tại quầy trước khi lập hóa đơn; thao tác này dùng cho khách vãng lai đã được kiểm tra.</div></div><div class="field full"><button type="submit" class="btn wide">＋ Thêm vào giỏ POS</button></div></form>`;
+    }
+    if (type === 'invoiceDetail') {
+        let inv = db.invoices.find(i => i.id === id);
+        if (inv) {
+            heading = 'Hóa đơn · ' + esc(inv.id);
+            content = `<div class="row between"><div><b>TiTi Pet — Shop & Spa</b><div class="muted-sm">245 Đường Số 8, P. 11, Gò Vấp, TP.HCM</div><div class="muted-sm">0903 845 579 - 0917 131 337</div></div>${badge('paid')}</div><div class="divider"></div><div class="receipt-line"><span>Thời gian</span><b>${new Date(inv.at).toLocaleString('vi-VN')}</b></div><div class="receipt-line"><span>Khách hàng</span><b>${esc(cu(inv.customer).name)}</b></div><div class="receipt-line"><span>Thu ngân</span><b>${esc(inv.staff)}</b></div><div class="receipt-line"><span>Kênh / Thanh toán</span><b>${esc(inv.source)} / ${esc(inv.method)}</b></div><div class="divider"></div>${inv.items.map(it => `<div class="receipt-line"><span>${esc(it.name)}<small> x${it.qty}</small></span><b>${vn(it.price * it.qty)}</b></div>`).join('')}<div class="divider"></div><div class="receipt-line"><span>Tạm tính</span><b>${vn(inv.subtotal)}</b></div><div class="receipt-line"><span>Giảm giá & điểm</span><b>− ${vn(inv.discount + (inv.pointsRedeemed || 0) * 1000)}</b></div><div class="receipt-line total"><span>Thực thu</span><b>${vn(inv.total)}</b></div><div class="row" style="margin-top:19px"><button class="btn wide" data-action="printInvoice" data-id="${inv.id}">🖨 In / Lưu PDF hóa đơn</button></div>`;
+        }
+    }
+    if (type === 'editAppt') {
+        let a = db.appointments.find(a => a.id === id);
+        heading = 'Dời / chỉnh lịch hẹn Spa';
+        if (a)
+            content = `<form id="editApptForm" class="formgrid"><input type="hidden" name="id" value="${esc(a.id)}"><div class="field"><label>Thời gian mới</label><input class="inp" type="date" name="date" min="${iso()}" value="${a.date}" required></div><div class="field"><label>Giờ mới</label><input class="inp" type="time" name="time" value="${a.time}" required></div><div class="field full"><label>Thợ phụ trách</label><select class="select" name="staff">${options(db.staff, 'id', 'name', a.staff)}</select></div><div class="field full"><div class="note">Theo khảo sát, khách cần báo đổi/hủy trước ít nhất <b>1,5 giờ</b>. Prototype kiểm tra thời điểm theo lịch hiện tại.</div></div><div class="field full"><button type="submit" class="btn wide">✓ Kiểm tra trùng & lưu thay đổi</button></div></form>`;
+    }
+    if (type === 'materials') {
+        heading = 'Ghi nhận vật tư Spa';
+        let j = db.jobs.find(x => x.id === id);
+        content = `<form id="materialsForm"><input type="hidden" name="id" value="${id}"><div class="field"><label>Vật tư tiêu hao thực tế</label><textarea class="textarea" name="material" placeholder="Ví dụ: 20ml dầu gội, khăn, vật tư cắt tỉa" required>${esc(j?.material || '')}</textarea></div><button class="btn wide" style="margin-top:18px">✓ Lưu vật tư</button></form>`;
+    }
+    if (type === 'handoff') {
+        heading = 'Bàn giao thú cưng cho chủ nuôi';
+        content = `<form id="handoffForm" class="formgrid"><input type="hidden" name="id" value="${esc(id)}"><div class="field full"><div class="note good">Khách nhận trễ không tính phí lưu chuồng. Nếu sử dụng thức ăn trong thời gian giữ pet, có thể ghi phát sinh để thu riêng.</div></div><div class="field full"><label>Tiền thức ăn phát sinh (đ)</label><input class="inp" type="number" min="0" name="food" value="0" required></div><div class="field full"><label>Ghi chú bàn giao</label><textarea class="textarea" name="note" placeholder="Tình trạng thú cưng khi bàn giao..."></textarea></div><div class="field full"><button class="btn green wide">✓ Xác nhận đã bàn giao</button></div></form>`;
+    }
+    if (type === 'rejectAppt') {
+        heading = 'Từ chối / điều chỉnh dịch vụ';
+        content = `<form id="rejectForm"><input type="hidden" name="id" value="${esc(id)}"><div class="field"><label>Lý do thực tế (bắt buộc)</label><textarea class="textarea" name="reason" required placeholder="Mô tả cụ thể tình trạng và nội dung trao đổi với khách hàng..."></textarea></div><div class="note warn" style="margin:15px 0">Tài liệu không liệt kê sẵn các lý do bị từ chối; nhân viên cần ghi nhận lý do thực tế.</div><button class="btn danger wide" type="submit">✕ Ghi nhận từ chối dịch vụ</button></form>`;
+    }
+    if (type === 'search') {
+        let q = ui.search.toLowerCase();
+        let customers = db.customers.filter(c => (c.name + c.phone).toLowerCase().includes(q));
+        let pets = db.pets.filter(p => (p.name + cu(p.owner).name).toLowerCase().includes(q));
+        let invoices = db.invoices.filter(i => i.id.toLowerCase().includes(q));
+        heading = 'Kết quả tra cứu: ' + esc(ui.search);
+        content = `<div class="grid" style="gap:9px">${customers.map(c => `<button class="choice" data-action="editCustomer" data-id="${c.id}">👤 Khách hàng: ${esc(c.name)} · ${esc(c.phone)}</button>`).join('')}${pets.map(p => `<button class="choice" data-action="editPet" data-id="${p.id}">🐾 Thú cưng: ${esc(p.name)} · ${esc(cu(p.owner).name)}</button>`).join('')}${invoices.map(i => `<button class="choice" data-action="invoiceDetail" data-id="${i.id}">▣ Hóa đơn: ${esc(i.id)} · ${vn(i.total)}</button>`).join('')}${!(customers.length + pets.length + invoices.length) ? empty('Không có kết quả phù hợp') : ''}</div>`;
+    }
+    mount.innerHTML = `<div class="modal-bg" id="modalBg"><section class="modal" role="dialog" aria-modal="true" aria-label="${esc(heading)}"><div class="modal-head"><h2>${heading}</h2><button class="modal-x" data-action="closeModal" aria-label="Đóng">✕</button></div><div class="modal-body">${content}</div></section></div>`;
+}
+function checkConflict(date, time, staff, service, exclude) { let t = time.split(':').reduce((a, x, i) => a + Number(x) * (i === 0 ? 60 : 1), 0), end = t + svc(service).duration; return db.appointments.find(a => a.id !== exclude && a.date === date && a.staff === staff && !['cancel', 'rejected'].includes(a.status) && (() => { let start = a.time.split(':').reduce((x, y, i) => x + Number(y) * (i === 0 ? 60 : 1), 0); return t < start + svc(a.service).duration && end > start; })()); }
+function parse(form) { return Object.fromEntries(new FormData(form).entries()); }
+function closeModal() {
+    const ctx = ui.quickContext;
+    if (ctx && ui.modal?.type === ctx.action) {
+        ui.quickContext = null;
+        ui.modal = ctx.parentModal || null;
+        renderModal();
+        if (ctx.parentModal) restoreQuickForm(ctx.saved, '', '');
+        return;
+    }
+    ui.quickContext = null;
+    ui.modal = null;
+    renderModal();
+}
+function csvDownload(filename, rows) { let body = '\ufeff' + rows.map(row => row.map(v => '"' + String(v ?? '').replace(/"/g, '""') + '"').join(',')).join('\r\n'); let a = document.createElement('a'), url = URL.createObjectURL(new Blob([body], { type: 'text/csv;charset=utf-8' })); a.href = url; a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1500); }
+function printInvoice(id) { let i = db.invoices.find(x => x.id === id); if (!i)
+    return; let w = window.open('', '_blank', 'width=560,height=780'); if (!w) {
+    toast('Trình duyệt đang chặn cửa sổ in.', true);
+    return;
+} let html = `<!doctype html><html lang="vi"><meta charset="utf-8"><title>${esc(i.id)}</title><style>body{font:13px Arial;max-width:430px;margin:28px auto;color:#223344}h1{text-align:center}p{text-align:center}.line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #bbb}b{font-weight:700}.total{font-size:19px;margin-top:20px}</style><h1>🐾 TiTi Pet</h1><p>SHOP & SPA · 245 Đường Số 8, P11, Gò Vấp, TP.HCM<br>0903 845 579 • 0917 131 337</p><hr><h2>HÓA ĐƠN BÁN LẺ</h2><p>${esc(i.id)} — ${new Date(i.at).toLocaleString('vi-VN')}</p><p>Khách: ${esc(cu(i.customer).name)} · NV: ${esc(i.staff)}</p>${i.items.map(it => `<div class="line"><span>${esc(it.name)} × ${it.qty}</span><b>${vn(it.qty * it.price)}</b></div>`).join('')}<div class="line"><span>Chiết khấu / điểm</span><b>− ${vn(i.discount + (i.pointsRedeemed || 0) * 1000)}</b></div><div class="line total"><strong>TỔNG THANH TOÁN</strong><b>${vn(i.total)}</b></div><p>Phương thức: ${esc(i.method)} · Kênh: ${esc(i.source)}</p><p>Cảm ơn quý khách đã ủng hộ TiTi Pet!<br>Hàng hóa chỉ được hỗ trợ đổi theo chính sách cửa hàng.</p></html>`; w.document.open(); w.document.write(html); w.document.close(); setTimeout(() => { w.focus(); w.print(); }, 300); }
+function syncTotals() { let e = $('#view'); if (e && ui.page === 'pos')
+    e.innerHTML = viewPOS(); }
+// Chọn khách mới trực tiếp từ phiếu đang nhập, không phải rời màn hình.
+function captureQuickForm(action) {
+    const parentModal = ui.modal && ui.modal.type !== action ? {...ui.modal} : null;
+    const form = parentModal ? document.querySelector('#modal form') :
+        (ui.page === 'appointments' ? document.querySelector('#apptForm') : null);
+    const saved = form ? [...form.elements].filter(el => el.name).map(el => ({
+        name: el.name, value: el.value, type: el.type, checked: el.checked
+    })) : [];
+    ui.quickContext = { action, parentModal, page: ui.page, saved };
+}
+function restoreQuickForm(saved, kind, newId) {
+    const form = ui.modal ? document.querySelector('#modal form') :
+      (ui.page === 'appointments' ? document.querySelector('#apptForm') : null);
+    if (!form) return;
+    (saved || []).forEach(item => {
+        if ((kind === 'customer' && ['customer','owner'].includes(item.name)) ||
+            (kind === 'pet' && item.name === 'pet')) return;
+        const el = [...form.elements].find(x => x.name === item.name && (x.type !== 'radio' || x.value === item.value));
+        if (!el) return;
+        if (el.type === 'checkbox' || el.type === 'radio') el.checked = item.checked;
+        else el.value = item.value;
+    });
+    if(kind === 'customer') {
+        const select = form.querySelector('[name="customer"], [name="owner"]');
+        if (select) select.value = newId;
+        if (select?.id === 'apptCustomer' || select?.id === 'walkinCustomer') {
+            select.dispatchEvent(new Event('change', {bubbles:true}));
+        }
+    }
+    if(kind === 'pet') {
+        const select = form.querySelector('[name="pet"]');
+        if (select) select.value = newId;
+    }
+}
+function finishQuickEntry(kind, newId) {
+    const ctx = ui.quickContext;
+    ui.quickContext = null;
+    if (kind === 'customer') {
+        if (ctx?.page === 'appointments') { ui.appointmentCustomer = newId; ui.appointmentPet = ''; }
+        if (ctx?.page === 'pos') ui.posCustomer = newId;
+        if (ctx?.parentModal?.type === 'walkin') { ui.walkinCustomer = newId; ui.walkinPet = ''; }
+    }
+    if (kind === 'pet') {
+        const p = pet(newId);
+        if (ctx?.page === 'appointments') { ui.appointmentCustomer = p.owner; ui.appointmentPet = newId; }
+        if (ctx?.parentModal?.type === 'walkin') { ui.walkinCustomer = p.owner; ui.walkinPet = newId; }
+    }
+    ui.modal = ctx?.parentModal || null;
+    render();
+    if (ctx) restoreQuickForm(ctx.saved, kind, newId);
+    persistMultiPageUI();
+}
+// Event delegation: all screens and modal forms are intentionally interactive.
+// [20] XỬ LÝ SỰ KIỆN CỦA CÁC NÚT
+document.addEventListener('click', e => {
+    const el = e.target.closest('[data-go],[data-action]');
+    if (!el) {
+        if (e.target.id === 'modalBg')
+            closeModal();
+        return;
+    }
+    if (el.dataset.go) {
+        e.preventDefault();
+        navigate(el.dataset.go);
+        return;
+    }
+    let a = el.dataset.action, id = el.dataset.id, idx = Number(el.dataset.idx);
+    try {
+        switch (a) {
+            case 'menu':
+                $('#sidebar')?.classList.toggle('show');
+                break;
+            case 'logout':
+                db.login = null;
+                save();
+                persistMultiPageUI();
+                window.location.assign((document.body.dataset.prefix || '') + 'login.html');
+                break;
+            case 'quicklogin': {
+                let v = el.dataset.role;
+                db.login = { role: v, name: v === 'manager' ? 'Quản lý TiTi Pet' : v === 'spa' ? 'Nguyễn Văn Tú' : 'Kiều Linh' };
+                save();
+                ui.page = 'dashboard';
+                persistMultiPageUI();
+                window.location.assign((document.body.dataset.prefix || '') + 'dashboard.html');
+                break;
+            }
+            case 'closeModal':
+                closeModal();
+                break;
+            case 'newCustomer':
+            case 'newPet':
+                if (el.dataset.quick) captureQuickForm(a);
+                openModal(a, id);
+                break;
+            case 'editCustomer':
+            case 'editPet':
+            case 'newProduct':
+            case 'editProduct':
+            case 'newService':
+            case 'editService':
+            case 'importStock':
+            case 'newPromo':
+            case 'editPromo':
+            case 'addService':
+            case 'invoiceDetail':
+            case 'editAppt':
+            case 'materials':
+            case 'rejectAppt':
+                openModal(a, id);
+                break;
+            case 'category':
+                ui.category = el.dataset.val;
+                render();
+                break;
+            case 'posFind':
+                ui.search = $('#posSearch')?.value?.trim() || '';
+                render();
+                break;
+            case 'addCart': {
+                let p = pr(id);
+                if (!p || !p.stock || isExpired(p)) {
+                    toast('Sản phẩm hết hàng hoặc hết hạn sử dụng.', true);
+                    break;
+                }
+                let old = ui.posItems.find(i => i.type === 'product' && i.id === id);
+                if (old) {
+                    if (old.qty >= p.stock) {
+                        toast('Không đủ số lượng tồn kho', true);
+                        break;
+                    }
+                    old.qty++;
+                }
+                else
+                    ui.posItems.push({ type: 'product', id, name: p.name, qty: 1, price: p.price });
+                render();
+                break;
+            }
+            case 'cartPlus': {
+                let i = ui.posItems[idx];
+                if (i && i.type === 'product' && i.qty >= pr(i.id).stock)
+                    toast('Sản phẩm không đủ số lượng tồn kho.', true);
+                else if (i) {
+                    i.qty++;
+                    render();
+                }
+                break;
+            }
+            case 'cartMinus': {
+                let i = ui.posItems[idx];
+                if (i) {
+                    i.qty--;
+                    if (i.qty <= 0)
+                        ui.posItems.splice(idx, 1);
+                    render();
+                }
+                break;
+            }
+            case 'cartDel':
+                ui.posItems.splice(idx, 1);
+                render();
+                break;
+            case 'clearCart':
+                ui.posItems = [];
+                ui.spaCartAppt = null;
+                ui.points = 0;
+                ui.promo = 'none';
+                render();
+                break;
+            case 'checkout':
+                checkout();
+                break;
+            case 'checkin':
+                ui.selectedAppt = id;
+                navigate('reception');
+                break;
+            case 'pickAppt':
+                ui.selectedAppt = id;
+                render();
+                break;
+            case 'cancelAppt': {
+                let ap = db.appointments.find(a => a.id === id);
+                if (!ap)
+                    return;
+                if ((new Date(ap.date + 'T' + ap.time) - new Date()) / 60000 < 90) {
+                    toast('Yêu cầu hủy/dời lịch phải báo trước ít nhất 1,5 giờ theo khảo sát.', true);
+                    break;
+                }
+                if (!confirm('Bạn muốn hủy lịch ' + ap.id + '?'))
+                    return;
+                ap.status = 'cancel';
+                log('Hủy lịch Spa ' + ap.id);
+                save();
+                render();
+                toast('Đã hủy lịch và trả khung giờ trống.');
+                break;
+            }
+            case 'walkin':
+                openModal('walkin');
+                break;
+            case 'rejectAppt':
+                openModal('rejectAppt', id);
+                break;
+            case 'jobNext': {
+                let j = db.jobs.find(j => j.id === id);
+                if (!j)
+                    break;
+                if (role() === 'cashier') {
+                    toast('Chỉ thợ Spa hoặc quản lý được cập nhật ca thực hiện.', true);
+                    break;
+                }
+                if (role() === 'spa' && j.staff !== 'SPA001') {
+                    toast('Bạn không được cập nhật ca của thợ khác.', true);
+                    break;
+                }
+                if (j.status === 'received')
+                    j.status = 'doing';
+                else if (j.status === 'doing')
+                    j.status = 'done';
+                else if (j.status === 'done') {
+                    openModal('handoff', id);
+                    break;
+                }
+                else
+                    break;
+                let ap = db.appointments.find(a => a.id === j.apptId);
+                if (ap)
+                    ap.status = j.status;
+                log('Cập nhật Spa ' + pet(j.pet).name + ': ' + statuses[j.status][0]);
+                save();
+                render();
+                toast('Đã cập nhật trạng thái ca Spa.');
+                break;
+            }
+            case 'findReturn':
+                ui.returnInvoice = $('#returnInvoice')?.value?.trim() || '';
+                ui.returnItem = '';
+                render();
+                if (!db.invoices.some(x => x.id === ui.returnInvoice))
+                    toast('Không tìm thấy hóa đơn đã thanh toán.', true);
+                break;
+            case 'searchInvoice':
+                ui.orderQuery = $('#invoiceSearch')?.value?.trim() || '';
+                render();
+                break;
+            case 'findCustomer':
+                ui.customerQuery = $('#customerSearch')?.value?.trim() || '';
+                render();
+                break;
+            case 'findPet':
+                ui.petQuery = $('#petSearch')?.value?.trim() || '';
+                render();
+                break;
+            case 'findStock':
+                ui.inventoryQuery = $('#stockSearch')?.value?.trim() || '';
+                render();
+                break;
+            case 'togglePromo': {
+                if (!isManager())
+                    return toast('Chỉ quản lý có thể điều chỉnh khuyến mãi.', true);
+                let p = db.promos.find(p => p.id === id);
+                if (p) {
+                    p.enabled = !p.enabled;
+                    save();
+                    render();
+                    toast('Đã cập nhật chương trình.');
+                }
+                break;
+            }
+            case 'reviseShift': {
+                let s = db.shifts.find(s => s.id === id && s.status === 'rejected' && s.staff === db.login.name);
+                if (!s)
+                    return toast('Không thể sửa phiếu kết ca này.', true);
+                if (activeshift())
+                    return toast('Đang tồn tại ca đang mở.', true);
+                s.status = 'open';
+                db.activeShift = s.id;
+                log('Kiểm tra lại phiếu kết ca ' + id);
+                save();
+                render();
+                toast('Ca đã được mở lại để kiểm tra tiền và giao dịch.');
+                break;
+            }
+            case 'approveShift': {
+                if (!isManager())
+                    return toast('Cần tài khoản quản lý.', true);
+                let s = db.shifts.find(s => s.id === id && s.status === 'draft');
+                if (!s)
+                    return;
+                if ((s.diff !== 0 || s.bankDiff !== 0) && !confirm('Ca đang có chênh lệch tiền mặt ' + vn(s.diff) + ' và chuyển khoản ' + vn(s.bankDiff) + '. Vẫn duyệt kết ca?'))
+                    return;
+                s.status = 'closed';
+                s.approvedBy = db.login.name;
+                log('Quản lý đã duyệt chốt ca ' + id);
+                save();
+                render();
+                toast('Đã phê duyệt chốt ca.');
+                break;
+            }
+            case 'rejectShift': {
+                if (!isManager())
+                    return toast('Cần tài khoản quản lý.', true);
+                let s = db.shifts.find(s => s.id === id && s.status === 'draft');
+                if (!s)
+                    return;
+                let reason = prompt('Nhập lý do từ chối để thu ngân kiểm tra lại:');
+                if (!reason?.trim())
+                    return toast('Cần nhập lý do từ chối.', true);
+                s.status = 'rejected';
+                s.rejectReason = reason;
+                log('Quản lý từ chối phiếu kết ca ' + id);
+                save();
+                render();
+                toast('Đã từ chối phiếu kết ca.');
+                break;
+            }
+            case 'approveRefund': {
+                if (!isManager())
+                    return toast('Chỉ quản lý duyệt yêu cầu hoàn tiền.', true);
+                let r = db.returns.find(x => x.id === id && x.status === 'refund');
+                if (!r)
+                    return;
+                let sh = activeshift();
+                if (!sh)
+                    return toast('Cần mở ca để ghi nhận tiền hoàn từ két.', true);
+                if (!confirm('Xác nhận đã hoàn ' + vn(r.refundAmount) + ' cho khách? Đây là thao tác mẫu, chính sách thực tế cần được duyệt.'))
+                    return;
+                r.status = 'refunded';
+                r.approvedBy = db.login.name;
+                let orig = pr(r.originalId);
+                if (orig)
+                    orig.stock++;
+                sh.cashOut += r.refundAmount;
+                log('Duyệt hoàn tiền ' + r.invoice + ' — ' + vn(r.refundAmount));
+                save();
+                render();
+                toast('Đã ghi nhận hoàn tiền và chi quỹ ca.');
+                break;
+            }
+            case 'payFood': {
+                let j = db.jobs.find(x => x.id === id);
+                if (!j || j.feePaid)
+                    return;
+                if (!requireShift())
+                    return;
+                ui.posCustomer = j.customer;
+                ui.posItems.push({ type: 'fee', id: 'FOOD', jobId: j.id, name: 'Chi phí thức ăn phát sinh khi chờ nhận pet', qty: 1, price: j.foodCharge });
+                navigate('pos');
+                toast('Đã chuyển khoản thức ăn phát sinh sang POS để thu riêng.');
+                break;
+            }
+            case 'printInvoice':
+                printInvoice(id);
+                break;
+            case 'exportInvoices':
+                csvDownload('TiTiPet_hoa_don.csv', [['Mã hóa đơn', 'Ngày', 'Khách hàng', 'Kênh', 'Thanh toán', 'Tổng'], ...db.invoices.map(i => [i.id, i.at, cu(i.customer).name, i.source, i.method, i.total])]);
+                break;
+            case 'exportCustomers':
+                csvDownload('TiTiPet_khach_hang.csv', [['Mã', 'Tên', 'SĐT', 'Hạng', 'Điểm', 'Tổng chi tiêu'], ...db.customers.map(c => [c.id, c.name, c.phone, c.tier, c.points, c.spent])]);
+                break;
+            case 'exportStock':
+                csvDownload('TiTiPet_ton_kho.csv', [['Mã', 'Mã vạch', 'Tên', 'Danh mục', 'Giá', 'Tồn', 'HSD'], ...db.products.map(p => [p.id, p.barcode, p.name, p.cat, p.price, p.stock, p.expiry])]);
+                break;
+            case 'exportShifts':
+                csvDownload('TiTiPet_chot_ca.csv', [['Mã', 'Ngày', 'Ca', 'Thu ngân', 'Đầu ca', 'Thực đếm', 'Lệch', 'Trạng thái'], ...db.shifts.map(s => [s.id, s.date, s.type, s.staff, s.opening, s.counted, s.diff, s.status])]);
+                break;
+            case 'resetDemo':
+                if (confirm('Xóa tất cả dữ liệu demo đã thao tác và khôi phục dữ liệu ban đầu?')) {
+                    db = seed();
+                    ui.posItems = [];
+                    save();
+                    render();
+                    toast('Đã khôi phục dữ liệu mẫu');
+                }
+                break;
+            default: console.warn('Chưa định nghĩa sự kiện', a);
+        }
+    }
+    catch (ex) {
+        console.error(ex);
+        toast('Có lỗi xử lý: ' + ex.message, true);
+    }
+});
+// [21] THANH TOÁN / TRỪ KHO / TÍCH ĐIỂM
+function checkout() { if (!requireShift())
+    return; if (!ui.posItems.length)
+    return toast('Giỏ hàng đang trống.', true); let m = posMath(); if (m.promo && ui.points > 0) {
+    toast('Không sử dụng điểm chung với khuyến mãi. Vui lòng tách hóa đơn.', true);
+    return;
+} for (let i of ui.posItems) {
+    if (i.type === 'product') {
+        let p = pr(i.id);
+        if (!p || p.stock < i.qty || isExpired(p)) {
+            toast('Không đủ tồn kho hoặc đã hết hạn: ' + i.name, true);
+            return;
+        }
+    }
+} if (!confirm('Xác nhận đã thu đủ ' + vn(m.due) + ' bằng ' + ui.payMethod + '?'))
+    return; let invoice = { id: 'HD' + new Date().getFullYear().toString().slice(2) + String(new Date().getMonth() + 1).padStart(2, '0') + String(new Date().getDate()).padStart(2, '0') + '-' + String(db.invoices.length + 1).padStart(4, '0'), at: new Date().toISOString(), status: 'paid', customer: ui.posCustomer || '', staff: db.login.name, shiftId: activeshift().id, source: ui.orderSource, method: ui.payMethod, items: structuredClone(ui.posItems), subtotal: m.sub, discount: m.promoDiscount + m.vipDiscount, promoId: m.promo?.id || null, pointsRedeemed: m.redeem, pointsEarned: m.earn, total: m.due }; for (let item of ui.posItems) {
+    if (item.type === 'product')
+        pr(item.id).stock -= item.qty;
+    else if (item.type === 'fee' && item.jobId) {
+        let j = db.jobs.find(x => x.id === item.jobId);
+        if (j)
+            j.feePaid = true;
+    }
+    else if (item.apptId) {
+        let a = db.appointments.find(x => x.id === item.apptId);
+        if (a && a.status === 'pending') {
+            a.status = 'received';
+            a.staff = item.staff || a.staff;
+            let p = pet(a.pet);
+            p.weight = item.weight || p.weight;
+            db.jobs.push({ id: uid('SPA'), apptId: a.id, customer: a.customer, pet: a.pet, staff: a.staff, service: a.service, status: 'received', material: '', at: new Date().toISOString() });
+        }
+    }
+} if (ui.posCustomer) {
+    let c = db.customers.find(x => x.id === ui.posCustomer);
+    if (c) {
+        c.points = Math.max(0, c.points - m.redeem + m.earn);
+        c.spent += m.due;
+    }
+} db.invoices.push(invoice); log('Thanh toán hóa đơn ' + invoice.id + ' — ' + vn(invoice.total)); ui.posItems = []; ui.spaCartAppt = null; ui.points = 0; ui.promo = 'none'; save(); render(); toast('Thanh toán thành công. Đã trừ kho, cập nhật điểm và ghi doanh thu.'); openModal('invoiceDetail', invoice.id); }
+function validPhone(p) { return /^0\d{9}$/.test(p); }
+// [22] XỬ LÝ TẤT CẢ FORM THÊM/SỬA/DỮ LIỆU
+function formHandler(e) {
+    e.preventDefault();
+    let f = e.target, id = f.getAttribute('id'), v = parse(f);
+    try {
+        switch (id) {
+            case 'loginForm': {
+                if (!v.username.trim() || !v.password.trim()) {
+                    toast('Vui lòng nhập tên đăng nhập và mật khẩu!', true);
+                    return;
+                }
+                db.login = { role: v.role, name: v.role === 'manager' ? 'Quản lý TiTi Pet' : v.role === 'spa' ? 'Nguyễn Văn Tú' : 'Kiều Linh' };
+                save();
+                persistMultiPageUI();
+                window.location.assign((document.body.dataset.prefix || '') + 'dashboard.html');
+                break;
+            }
+            case 'openShiftForm': {
+                if (!['check0', 'check1', 'check2', 'check3'].every(k => v[k]))
+                    return toast('Bạn cần xác nhận đủ 4 thiết bị kiểm tra.', true);
+                let amount = Number(v.opening);
+                if (!Number.isFinite(amount) || amount < 0)
+                    return toast('Tiền đầu ca không hợp lệ.', true);
+                if (activeshift())
+                    return toast('Một ca đang hoạt động.', true);
+                let s = { id: uid('CA'), date: iso(), type: v.type, opening: amount, cashOut: 0, note: v.note, staff: db.login.name, status: 'open', at: new Date().toISOString() };
+                db.shifts.push(s);
+                db.activeShift = s.id;
+                log('Mở ' + v.type + ', quỹ ' + vn(amount));
+                save();
+                render();
+                toast('Mở ca thành công. POS đã sẵn sàng!');
+                break;
+            }
+            case 'closeShiftForm': {
+                let s = activeshift();
+                if (!s)
+                    return toast('Chưa có ca để chốt.', true);
+                let tx = db.invoices.filter(i => i.shiftId === s.id && i.status === 'paid'), cash = tx.filter(i => i.method === 'Tiền mặt').reduce((a, i) => a + i.total, 0), bank = tx.filter(i => i.method !== 'Tiền mặt').reduce((a, i) => a + i.total, 0);
+                let counted = Number(v.counted), actualBank = Number(v.bankActual), cashOut = Number(v.cashOut);
+                if ([counted, actualBank, cashOut].some(x => !Number.isFinite(x) || x < 0))
+                    return toast('Số tiền không hợp lệ.', true);
+                let exp = s.opening + cash - cashOut, diff = counted - exp, bankDiff = actualBank - bank;
+                if ((diff !== 0 || bankDiff !== 0) && !v.note?.trim())
+                    return toast('Có chênh lệch! Vui lòng ghi rõ lý do và kiểm tra từng hóa đơn.', true);
+                Object.assign(s, { counted, actualBank, cashOut, diff, bankDiff, expectedCash: exp, expectedBank: bank, closeNote: v.note, status: 'draft', closedAt: new Date().toISOString() });
+                db.activeShift = null;
+                log('Đã gửi phiếu đối soát ' + s.id + ' cho quản lý duyệt');
+                save();
+                render();
+                toast('Đã lập phiếu chốt ca, trạng thái chờ quản lý xác nhận.');
+                break;
+            }
+            case 'walkinForm': {
+                let p = pet(v.pet);
+                if (p.owner !== v.customer)
+                    return toast('Thú cưng không thuộc khách hàng đã chọn.', true);
+                let currentTime = new Date().toTimeString().slice(0, 5);
+                if (checkConflict(iso(), currentTime, v.staff, v.service))
+                    return toast('Thợ đang bận lịch trong khung giờ này. Vui lòng chọn thợ khác hoặc đặt lịch chờ.', true);
+                let a = { id: uid('LH'), date: iso(), time: currentTime, customer: v.customer, pet: v.pet, service: v.service, staff: v.staff, channel: 'Trực tiếp', status: 'pending', note: 'Khách vãng lai, tiếp nhận thực tế tại quầy' };
+                db.appointments.push(a);
+                ui.selectedAppt = a.id;
+                log('Tạo phiếu khách vãng lai ' + a.id);
+                save();
+                closeModal();
+                navigate('reception');
+                toast('Đã tạo phiếu khách đến trực tiếp.');
+                break;
+            }
+            case 'apptForm': {
+                if (!db.customers.some(c => c.id === v.customer))
+                    return toast('Vui lòng chọn khách hàng.', true);
+                let p = pet(v.pet), s = svc(v.service);
+                if (p.owner !== v.customer)
+                    return toast('Thú cưng không thuộc khách hàng đã chọn.', true);
+                if (s.species !== 'Tất cả' && p.species !== s.species)
+                    return toast('Dịch vụ không áp dụng cho loài thú cưng này.', true);
+                let c = checkConflict(v.date, v.time, v.staff, v.service);
+                if (c)
+                    return toast('Khung giờ trùng lịch của ' + stf(v.staff).name + ' (' + c.time + '). Hãy đổi giờ hoặc thợ.', true);
+                if (new Date(v.date + 'T' + v.time) < new Date())
+                    return toast('Không thể tạo lịch hẹn trong quá khứ.', true);
+                let a = { id: uid('LH'), date: v.date, time: v.time, customer: v.customer, pet: v.pet, service: v.service, staff: v.staff, channel: v.channel, status: 'pending', note: v.note };
+                db.appointments.push(a);
+                ui.filterDay = v.date;
+                log('Đặt lịch Spa ' + a.id + ' cho ' + pet(a.pet).name);
+                save();
+                render();
+                toast('Đã lưu lịch hẹn với trạng thái Chờ tiếp nhận.');
+                break;
+            }
+            case 'editApptForm': {
+                let a = db.appointments.find(x => x.id === v.id);
+                if (!a)
+                    return;
+                if ((new Date(a.date + 'T' + a.time) - new Date()) / 60000 < 90)
+                    return toast('Lịch phải được báo dời trước ít nhất 1,5 giờ.', true);
+                if (checkConflict(v.date, v.time, v.staff, a.service, a.id))
+                    return toast('Trùng thợ và khung giờ; chọn thời gian khác.', true);
+                if (new Date(v.date + 'T' + v.time) < new Date())
+                    return toast('Không được dời lịch vào quá khứ.', true);
+                Object.assign(a, { date: v.date, time: v.time, staff: v.staff });
+                ui.filterDay = v.date;
+                log('Dời lịch hẹn ' + a.id);
+                save();
+                closeModal();
+                render();
+                toast('Dời lịch thành công.');
+                break;
+            }
+            case 'receptionForm': {
+                if (!requireShift())
+                    return;
+                let a = db.appointments.find(a => a.id === v.apptId);
+                if (!a || a.status !== 'pending')
+                    return toast('Lịch không ở trạng thái chờ tiếp nhận.', true);
+                let p = pet(a.pet), service = svc(v.service), w = Number(v.weight);
+                if (w <= 0 || w > 100)
+                    return toast('Cân nặng phải lớn hơn 0.', true);
+                if (service.species !== 'Tất cả' && service.species !== p.species)
+                    return toast('Dịch vụ không áp dụng cho loài pet.', true);
+                let price = calcSpa(v.service, w, v.coat);
+                a.service = v.service;
+                a.staff = v.staff;
+                a.coat = v.coat;
+                a.note = v.note;
+                ui.posCustomer = a.customer;
+                ui.posItems.push({ id: v.service, name: service.name + (v.coat !== 'normal' ? ' · ' + v.coat : ''), type: 'spa', qty: 1, price: price.total, apptId: a.id, staff: v.staff, weight: w });
+                ui.spaCartAppt = a.id;
+                ui.promo = 'none';
+                ui.points = 0;
+                save();
+                navigate('pos');
+                toast('Đã chuyển phí Spa sang POS. Thu 100% trước khi bàn giao.');
+                break;
+            }
+            case 'customerForm': {
+                if (!validPhone(v.phone))
+                    return toast('Số điện thoại phải gồm 10 chữ số và bắt đầu bằng 0.', true);
+                if (db.customers.some(c => c.phone === v.phone && c.id !== v.id))
+                    return toast('Số điện thoại đã tồn tại ở hồ sơ khác.', true);
+                let c = v.id ? db.customers.find(x => x.id === v.id) : null;
+                if (c) {
+                    c.name = v.name;
+                    if (isManager())
+                        c.tier = v.tier;
+                    c.phone = v.phone;
+                }
+                else {
+                    c = { id: uid('KH'), name: v.name, phone: v.phone, tier: 'Bạc', points: 0, spent: 0 };
+                    db.customers.push(c);
+                }
+                log('Lưu hồ sơ khách hàng ' + v.name);
+                save();
+                if (ui.quickContext && !v.id) finishQuickEntry('customer', c.id);
+                else { closeModal(); render(); }
+                toast('Đã lưu hồ sơ khách hàng.');
+                break;
+            }
+            case 'petForm': {
+                let w = Number(v.weight);
+                if (!(w > 0))
+                    return toast('Cân nặng phải lớn hơn 0.', true);
+                let p = v.id ? db.pets.find(x => x.id === v.id) : null;
+                if (p)
+                    Object.assign(p, { owner: v.owner, name: v.name, species: v.species, breed: v.breed, weight: w, note: v.note });
+                else {
+                    p = { id: uid('PET'), owner: v.owner, name: v.name, species: v.species, breed: v.breed, weight: w, note: v.note };
+                    db.pets.push(p);
+                }
+                log('Lưu hồ sơ thú cưng ' + v.name);
+                save();
+                if (ui.quickContext && !v.id) finishQuickEntry('pet', p.id);
+                else { closeModal(); render(); }
+                toast('Đã lưu hồ sơ thú cưng.');
+                break;
+            }
+            case 'productForm': {
+                if (!isManager())
+                    return toast('Chỉ quản lý được sửa sản phẩm.', true);
+                if (db.products.some(p => p.barcode === v.barcode && p.id !== v.id))
+                    return toast('Mã vạch đã tồn tại.', true);
+                let x = pr(v.id), val = { name: v.name, barcode: v.barcode, cat: v.cat, price: Number(v.price), expiry: v.expiry, emoji: v.emoji || '📦', returnable: v.returnable === 'true' && !['Thức ăn cho mèo', 'Thức ăn cho chó', 'Vệ sinh', 'Thuốc', 'Hỗ trợ chuồng'].includes(v.cat) };
+                if (x)
+                    Object.assign(x, val);
+                else
+                    db.products.push({ id: uid('SP'), stock: Number(v.stock) || 0, ...val });
+                log('Cập nhật mặt hàng ' + v.name);
+                save();
+                closeModal();
+                render();
+                toast('Đã cập nhật danh mục sản phẩm.');
+                break;
+            }
+            case 'stockForm': {
+                if (!isManager())
+                    return toast('Chỉ quản lý được nhập kho.', true);
+                let p = pr(v.id), q = Number(v.qty);
+                if (!p || q <= 0)
+                    return toast('Chọn mặt hàng và số lượng hợp lệ.', true);
+                p.stock += q;
+                if (v.expiry)
+                    p.expiry = v.expiry;
+                log('Nhập kho ' + q + ' x ' + p.name);
+                save();
+                closeModal();
+                render();
+                toast('Đã nhập ' + q + ' sản phẩm vào kho.');
+                break;
+            }
+            case 'serviceForm': {
+                if (!isManager())
+                    return toast('Chỉ quản lý được sửa dịch vụ.', true);
+                let service = db.services.find(s => s.id === v.id), val = { name: v.name, species: v.species, base: Number(v.base), duration: Number(v.duration) };
+                if (service)
+                    Object.assign(service, val);
+                else
+                    db.services.push({ id: uid('SV'), ...val });
+                save();
+                closeModal();
+                render();
+                toast('Đã lưu bảng giá dịch vụ.');
+                break;
+            }
+            case 'promoForm': {
+                if (!isManager())
+                    return toast('Chỉ quản lý được tạo khuyến mãi.', true);
+                if (v.end < v.start)
+                    return toast('Ngày kết thúc phải từ ngày bắt đầu trở đi.', true);
+                if (v.type === 'percent' && Number(v.value) > 100)
+                    return toast('Phần trăm giảm không thể vượt 100%.', true);
+                let p = db.promos.find(p => p.id === v.id), val = { name: v.name, target: v.target, type: v.type, value: Number(v.value), start: v.start, end: v.end, enabled: v.enabled === 'true' };
+                if (p)
+                    Object.assign(p, val);
+                else
+                    db.promos.push({ id: uid('KM'), ...val });
+                save();
+                closeModal();
+                render();
+                toast('Đã lưu chương trình khuyến mãi.');
+                break;
+            }
+            case 'addServiceForm': {
+                if (!requireShift())
+                    return;
+                let s = svc(v.service), w = Number(v.weight);
+                if (s.species !== 'Tất cả' && s.species !== v.species)
+                    return toast('Dịch vụ không áp dụng cho loài pet này.', true);
+                let pp = calcSpa(v.service, w, 'normal');
+                ui.posItems.push({ type: 'spa', id: v.service, name: s.name + ' (khách vãng lai)', price: pp.total, qty: 1, weight: w });
+                closeModal();
+                render();
+                toast('Đã thêm phí dịch vụ vào hóa đơn.');
+                break;
+            }
+            case 'materialsForm': {
+                let j = db.jobs.find(x => x.id === v.id);
+                if (!j)
+                    return;
+                j.material = v.material;
+                save();
+                closeModal();
+                render();
+                toast('Đã ghi nhận vật tư Spa.');
+                break;
+            }
+            case 'handoffForm': {
+                let j = db.jobs.find(x => x.id === v.id);
+                if (!j || j.status !== 'done')
+                    return;
+                let food = Number(v.food) || 0;
+                j.status = 'handed';
+                j.handedAt = new Date().toLocaleString('vi-VN');
+                j.handoffNote = v.note;
+                j.foodCharge = food;
+                let a = db.appointments.find(x => x.id === j.apptId);
+                if (a)
+                    a.status = 'handed';
+                log('Bàn giao ' + pet(j.pet).name + (food ? ' · Phát sinh thức ăn ' + vn(food) : ''));
+                save();
+                closeModal();
+                render();
+                toast(food ? 'Đã bàn giao. Phát sinh ' + vn(food) + ' thức ăn cần thu riêng ở POS.' : 'Đã bàn giao thú cưng thành công.');
+                break;
+            }
+            case 'rejectForm': {
+                let a = db.appointments.find(x => x.id === v.id);
+                if (!a)
+                    return;
+                a.status = 'rejected';
+                a.rejectReason = v.reason;
+                log('Từ chối dịch vụ ' + a.id);
+                save();
+                closeModal();
+                render();
+                toast('Đã ghi nhận từ chối dịch vụ và lý do.');
+                break;
+            }
+            case 'returnForm': {
+                handleReturn(v);
+                break;
+            }
+            default: console.warn('Chưa xử lý form', id);
+        }
+    }
+    catch (ex) {
+        console.error(ex);
+        toast('Có lỗi xử lý form: ' + ex.message, true);
+    }
+}
+document.addEventListener('submit', formHandler);
+// [23] XỬ LÝ ĐỔI TRẢ / HOÀN TIỀN
+function handleReturn(v) { let invoice = db.invoices.find(i => i.id === ui.returnInvoice); if (!invoice)
+    return toast('Không tìm thấy hóa đơn.', true); let item = invoice.items.find(i => i.id === ui.returnItem && i.type === 'product') || invoice.items.find(i => i.type === 'product'); if (!item)
+    return toast('Hóa đơn không có sản phẩm để đổi/trả.', true); let product = pr(item.id); if (!product?.returnable)
+    return toast('Sản phẩm không được hỗ trợ đổi trả theo chính sách.', true); if (db.returns.some(r => r.invoice === invoice.id && r.originalId === item.id))
+    return toast('Sản phẩm đã có yêu cầu đổi/trả trước đó (tối đa 1 lần).', true); let diffH = (Date.now() - new Date(invoice.at).getTime()) / 3600000; if (diffH > 24)
+    return toast('Hóa đơn đã quá 24 giờ theo phiếu bán lẻ.', true); if (new Date().getHours() < 12)
+    return toast('Khách cần liên hệ đổi hàng sau 12 giờ trưa.', true); if (!['clean', 'unused', 'receipt', 'once'].every(k => v[k]))
+    return toast('Sản phẩm chưa đủ điều kiện: sạch, không mùi/dính lông, chưa sử dụng và có hóa đơn.', true); let r = { id: uid('DT'), invoice: invoice.id, original: item.name, originalId: item.id, at: new Date().toISOString(), qty: 1, note: v.reason }; if (v.returnType === 'refund') {
+    r.status = 'refund';
+    r.extra = 0;
+    r.refundAmount = item.price;
+    db.returns.push(r);
+    log('Chờ quản lý xử lý yêu cầu trả hàng ' + invoice.id);
+    save();
+    render();
+    toast('Đã lưu yêu cầu hoàn tiền CHỜ QUẢN LÝ, chưa hoàn tiền hoặc cập nhật tồn kho.');
+    return;
+} let np = pr(v.newProduct); if (!np)
+    return toast('Vui lòng chọn sản phẩm thay thế.', true); if (np.price < item.price)
+    return toast('Giá sản phẩm mới phải bằng hoặc cao hơn giá cũ; cửa hàng không hoàn tiền thừa.', true); if (np.stock < 1 || isExpired(np))
+    return toast('Mặt hàng thay thế không đủ tồn kho hoặc hết hạn.', true); if (np.price > item.price && !activeshift())
+    return toast('Cần mở ca thu ngân để ghi nhận tiền chênh lệch.', true); if (!confirm('Đổi ' + item.name + ' thành ' + np.name + ', khách thanh toán chênh lệch ' + vn(np.price - item.price) + '?'))
+    return; r.status = 'exchange'; r.replacement = np.name; r.replacementId = np.id; r.extra = np.price - item.price; db.returns.push(r); np.stock--; product.stock++; if (r.extra > 0) {
+    let s = activeshift();
+    if (!s)
+        return toast('Vui lòng mở ca để thu chênh lệch.', true);
+    db.invoices.push({ id: uid('HD-DOI'), at: new Date().toISOString(), status: 'paid', customer: invoice.customer, staff: db.login.name, shiftId: s.id, source: 'Tại quầy', method: 'Tiền mặt', items: [{ type: 'product', id: np.id, name: 'Chênh lệch đổi: ' + np.name, qty: 1, price: r.extra }], subtotal: r.extra, discount: 0, pointsRedeemed: 0, pointsEarned: 0, total: r.extra });
+} log('Đổi hàng ' + invoice.id + ' → ' + np.name); save(); render(); toast('Đổi hàng thành công; tồn kho và phần bù giá đã được ghi nhận.'); }
+// Changes to form controls that affect summaries or connected screens.
+document.addEventListener('change', e => { let t = e.target; switch (t.id) {
+    case 'filterApptDate':
+        ui.filterDay = t.value;
+        render();
+        break;
+    case 'apptCustomer':
+    case 'walkinCustomer': {
+        const selectedId = t.value;
+        const inAppointment = t.id === 'apptCustomer';
+        if (inAppointment) { ui.appointmentCustomer = selectedId; ui.appointmentPet = ''; }
+        else { ui.walkinCustomer = selectedId; ui.walkinPet = ''; }
+        const petInput = document.getElementById(inAppointment ? 'apptPet' : 'walkinPet');
+        if (petInput) {
+            petInput.innerHTML = options(db.pets.filter(p => p.owner === selectedId), 'id',
+              p => p.name + ' · ' + cu(p.owner).name, '', '-- Chọn thú cưng --');
+            petInput.value = '';
+        }
+        break;
+    }
+    case 'apptPet': ui.appointmentPet = t.value; break;
+    case 'walkinPet': ui.walkinPet = t.value; break;
+    case 'posCustomer':
+        ui.posCustomer = t.value;
+        ui.points = 0;
+        render();
+        break;
+    case 'posPromo':
+        ui.promo = t.value;
+        ui.points = 0;
+        render();
+        break;
+    case 'posPoints':
+        ui.points = Math.max(0, Number(t.value) || 0);
+        render();
+        break;
+    case 'payMethod':
+        ui.payMethod = t.value;
+        render();
+        break;
+    case 'orderSource':
+        ui.orderSource = t.value;
+        render();
+        break;
+    case 'returnItem':
+        ui.returnItem = t.value;
+        render();
+        break;
+    case 'rxService':
+    case 'rxWeight':
+    case 'rxCoat':
+        updateRx();
+        break;
+    default:
+        if (t.name === 'coat')
+            updateRx();
+        if (t.name === 'returnType') {
+            ui.returnType = t.value;
+            let select = $('#newProductWrap');
+            if (select)
+                select.style.display = t.value === 'refund' ? 'none' : '';
+        }
+} });
+function updateRx() { let a = db.appointments.find(x => x.id === ui.selectedAppt); if (!a)
+    return; let w = Number($('#rxWeight')?.value), service = $('#rxService')?.value, coat = document.querySelector('[name="coat"]:checked')?.value || 'normal', p = calcSpa(service, w, coat), el = $('#rxPrice'); if (el)
+    el.innerHTML = 'Giá cơ sở: ' + vn(p.base) + ' · Phụ thu cân nặng: ' + vn(p.weightFee) + ' · Phụ thu lông/da: ' + vn(p.coatFee) + ' → <b>' + vn(p.total) + '</b>'; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && ui.modal)
+    closeModal(); if (e.key === 'Enter' && e.target.id === 'globalSearch') {
+    e.preventDefault();
+    let q = e.target.value.trim();
+    if (!q)
+        return;
+    ui.search = q;
+    openModal('search');
+} if (e.key === 'Enter' && e.target.id === 'posSearch') {
+    e.preventDefault();
+    ui.search = e.target.value.trim();
+    render();
+} });
+// Footer capability for a fresh Figma review session.
+window.addEventListener('error', e => console.error('TiTi Pet prototype:', e.message));
+// ---- Khởi tạo điều hướng theo từng file .html ----
+// [24] BOOTSTRAP MỖI HTML RIÊNG
+const TITIPET_PAGE = document.body.dataset.page || 'login';
+const TITIPET_MODAL = document.body.dataset.modal || '';
+const TITIPET_MODAL_ID = document.body.dataset.item || '';
+const TITIPET_UI_KEY = 'titipet_multipage_ui';
+function persistMultiPageUI() {
+    try {
+        sessionStorage.setItem(TITIPET_UI_KEY, JSON.stringify({
+            selectedAppt: ui.selectedAppt, posItems: ui.posItems, spaCartAppt: ui.spaCartAppt,
+            posCustomer: ui.posCustomer, appointmentCustomer: ui.appointmentCustomer, appointmentPet: ui.appointmentPet, walkinCustomer: ui.walkinCustomer, walkinPet: ui.walkinPet, payMethod: ui.payMethod, orderSource: ui.orderSource,
+            promo: ui.promo, points: ui.points, filterDay: ui.filterDay, returnInvoice: ui.returnInvoice,
+            returnItem: ui.returnItem, category: ui.category
+        }));
+    }
+    catch (e) {
+        console.warn('Không lưu được trạng thái màn hình', e);
+    }
+}
+try {
+    Object.assign(ui, JSON.parse(sessionStorage.getItem(TITIPET_UI_KEY) || '{}'));
+}
+catch (e) { }
+ui.page = TITIPET_PAGE === 'login' ? 'dashboard' : TITIPET_PAGE;
+// Nếu người thiết kế vào thẳng một trang nội bộ, cấp vai trò quản lý mô phỏng
+// để tất cả HTML có thể xem riêng; đăng nhập thật không tồn tại ở frontend này.
+if (TITIPET_PAGE !== 'login' && !db.login) {
+    db.login = { role: 'manager', name: 'Quản lý TiTi Pet' };
+    save();
+}
+if (TITIPET_PAGE !== 'login' && db.login && !canPage(ui.page)) {
+    window.location.replace((document.body.dataset.prefix || '') + 'dashboard.html');
+}
+else {
+    // Trang trạng thái của Figma có thể mở sẵn form/modal để xem các biến thể.
+    if (TITIPET_MODAL)
+        ui.modal = { type: TITIPET_MODAL, id: TITIPET_MODAL_ID || null };
+    render();
+}
+
+</script>
+</body>
+</html>
